@@ -1,0 +1,111 @@
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//说明。。。
+//$..$标记需要解析的标签，如$getJavaPah()$表示根据包名计算的java文件保存路径。
+//内部变量定义区域
+//根据#FILE得知物理文件保存路径、名称
+//#FILE=$getJspPah()$/$getClassInstance()$Add.jsp
+#FILE=$getJavaPah()$/dao/impl/$getClass()$DaoImpl.java
+//根据#LEVEL得知文件级别：分模块级别，单个类[数据表]级别
+#LEVEL=CLASS
+//#LEVEL=MODULE
+//以下为输出的物理文件文件内容
+//**DAOImpl.java样例
+package $getPackage()$.dao.impl;
+
+import java.sql.SQLException;
+import java.util.List;
+
+
+import org.hibernate.Query;
+
+
+import $getPackage()$.dao.$getClass()$Dao;
+import $getPackage()$.hibernate.BaseDaoSupport;
+import $getPackage()$.pojo.$getClass()$;
+//import $getPackage()$.pojo.User;
+
+
+
+public class $getClass()$DaoImpl extends BaseDaoSupport implements $getClass()$Dao {
+
+	public $getClassIdType()$ add$getClass()$($getClass()$ $getClassInstance()$) {
+		return ($getClassIdType()$) getHibernateTemplate().save($getClassInstance()$);
+	}
+
+	
+	public void update$getClass()$($getClass()$ $getClassInstance()$) {
+		getHibernateTemplate().update($getClassInstance()$);
+	}
+	
+	
+	public $getClass()$ get$getClass()$($getClassIdType()$ id) {
+		return ($getClass()$)getHibernateTemplate().get($getClass()$.class, id);
+	}
+	
+	/**
+	 * 获得所有用户
+	 */
+	public List getAll$getClass()$(){
+		return getHibernateTemplate().find("from $getClass()$");
+	}
+
+	//多个参数查询
+    // XXX
+	public List findByHqlByCondition(Object[] args,int startRows, int pageSize){
+		pageCallback.setStartRow(startRows);
+		pageCallback.setPageSize(pageSize);
+
+	int i=0;
+
+		pageCallback.setHql("from $getClass()$ as model where 1=1 "
+					+" and model.XXX like '%"+args[i]+"%'"
+				+" and model.XXX like '%"+args[i+1]+"%'");
+			return getHibernateTemplate().executeFind(pageCallback);
+	
+	} 	
+	public List findByHql(int startRows, int pageSize){
+		pageCallback.setStartRow(startRows);
+		pageCallback.setPageSize(pageSize);
+		pageCallback.setHql("from $getClass()$");
+		return getHibernateTemplate().executeFind(pageCallback);
+	
+	} 
+
+	/**
+	 * 获得所有用户
+	 * hibernate分页查询
+	 */
+	public List getAll$getClass()$(int startRows, int pageSize){
+		pageCallback.setStartRow(startRows);
+		pageCallback.setPageSize(pageSize);
+		pageCallback.setHql("from $getClass()$");
+		return getHibernateTemplate().executeFind(pageCallback);
+	}
+	
+	/**
+	 * 获得用户总记录数
+	 */
+	public Long getAll$getClass()$Rows(){
+		countCallback.setHql("select count(*) from $getClass()$");
+		return (Long)getHibernateTemplate().execute(countCallback);
+	}
+	
+	// XXX
+	public Long getAll$getClass()$RowsByCondition(Object[] args){
+      int i=0;
+
+			
+			countCallback.setHql("select count(*) from $getClass()$ as model where 1=1 "
+			+" and model.XXX like '%"+args[i]+"%'"
+				+" and model.XXX like '%"+args[i+1]+"%'");
+			return (Long)getHibernateTemplate().execute(countCallback);
+	
+	}
+   //删除
+	public void delete$getClass()$($getClass()$ $getClassInstance()$) {
+		
+		getHibernateTemplate().delete($getClassInstance()$);
+	}
+}

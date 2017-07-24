@@ -1,0 +1,68 @@
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//说明。。。
+//$..$标记需要解析的标签，如$getJavaPah()$表示根据包名计算的java文件保存路径。
+//内部变量定义区域
+//根据#FILE得知物理文件保存路径、名称
+#FILE=$getJspPah()$/$getClassInstance()$Update.jsp
+//#FILE=$getJavaPah()$/dao/$getClass()$DAO.java
+//根据#LEVEL得知文件级别：分模块级别，单个类[数据表]级别
+#LEVEL=CLASS
+//#LEVEL=MODULE
+//以下为输出的物理文件文件内容
+//**Update.jsp养例
+<%@ page contentType="text/html; charset=GBK" %> 
+<%@ page import="$getPackage()$.util.*"%>
+<%@ include file="taglibs.jsp"%>
+<%@ page import="java.util.*"%> 
+<%@ page import="$getPackage()$.pojo.$getClass()$"%> 
+<% 
+	$getClass()$ $getClassInstance()$=($getClass()$)request.getAttribute("$getClassInstance()$");
+	if ($getClassInstance()$ ==null ) 
+	$getClassInstance()$ = new $getClass()$(); 
+	String currentPage="$getClassTitle()$" ;
+%>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<link href="/style/style.css" rel="stylesheet" type="text/css" />
+<script language="javascript" src="/js/common.js"></script>
+<script language="javascript" src="/js/calendar.js"></script>
+</head>
+
+<body>
+ <%@ include file = "menu.jsp"  %>     
+  <form action = "./$getClassInstance()$Action.do" method="post" name="frmUpdate"       > 
+      
+  <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td height="6" background="/images/title_03.gif"></td>
+    </tr>
+  </table>
+  <br> 
+  <input type="hidden" name="method" value="update"> 
+  <table align="center" class="tbwidthBorder">
+<!--<tr> 
+       <td width = '60' nowrap  class='DetailBg'>$getClassIdTitle()$</td>
+       <td> 
+          <input name="$getClassId()$" type="text" class="TextField" value="<%=Util.strNull($getClassInstance()$.get$getClassIdIC()$())%>" />
+       </td>
+    </tr>-->
+   <input name="$getClassId()$" type="hidden" value="<%=Util.strNull($getClassInstance()$.get$getClassIdIC()$())%>" />
+		$FOR.CLASS.PROPERTY$	
+    <tr> 
+       <td width = '121' nowrap class='DetailBg'>$getClassPropertyTitle()$</td>
+       <td> 
+          <input name="$getClassPropertyName()$" type="text" class="TextField" value="<%=Util.strNull($getClassInstance()$.get$getClassPropertyNameIC()$())%>" />
+       </td>
+    </tr>
+    $ENDFOR.CLASS.PROPERTY$</table> 
+  <br>
+  <div align="center">
+    <input  type="submit" class='Btn' value = " 更新 ">
+    <input  type="button" class='Btn' onClick="javascript:history.go(-1)" value = " 后退 " >
+  </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,30 @@
+//#FILE=$getJspPah()$/config/$getModule()$Context.xml
+#FILE=$getRootPah()$/web/WEB-INF/applicationContext-service.xml
+#LEVEL=MODULE
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:aop="http://www.springframework.org/schema/aop"
+	     xmlns:tx="http://www.springframework.org/schema/tx"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd"
+         default-autowire="byName">
+
+
+
+	<!-- =================================================================== -->
+	<!-- Bussiness Impl                                                      -->
+	<!-- =================================================================== -->
+$FOR.CLASS$
+	<bean
+		id="$getClassInstance()$Manager"
+		class = "$getPackage()$.service.impl.$getClass()$ManagerImpl">
+	</bean>
+$ENDFOR.CLASS$
+
+<!-- DWR Bean -->
+	<bean id="dwrUser" class="$getPackage()$.service.dwr.DWRUser"></bean>
+
+
+</beans>

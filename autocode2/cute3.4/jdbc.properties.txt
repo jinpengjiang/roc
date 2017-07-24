@@ -1,0 +1,29 @@
+#FILE=$getJavaPah()$/resource/jdbc.properties
+#LEVEL=MODULE
+#JDBC Definition
+# mssql
+##.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
+##.url=jdbc:sqlserver://localhost:1433;databaseName=yj;tds=8.0;lastupdatecount=true
+##.username=sa
+##.password=sasasa
+
+# oracle
+jdbc.driverClassName=oracle.jdbc.driver.OracleDriver
+jdbc.url=jdbc:oracle:thin:@192.168.1.249:1521:orcl
+jdbc.username=jjp
+jdbc.password=jjp
+
+
+
+#mysql
+##.driverClassName=com.mysql.jdbc.Driver
+##.url=jdbc:mysql://localhost/vopak
+##.username=11
+##.password=11
+
+
+#Hibernate Definition
+hibernate.dialect=org.hibernate.dialect.Oracle10gDialect
+hibernate.show_sql=true
+hibernate.format_sql=false
+hibernate.cache.provider_class=org.hibernate.cache.NoCacheProvider

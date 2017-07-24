@@ -1,0 +1,256 @@
+//#FILE=$getJspPah()$/build/build.xml
+#FILE=$getRootPah()$/build.xml
+#LEVEL=MODULE
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="InitCuteFramework" default="main" basedir=".">
+
+	<property name="xdoclet.root.dir" value="${basedir}" />
+	<property file="build-dist.properties" />
+
+	<!-- =================================================================== -->
+	<!-- Initialize                                                          -->
+	<!-- =================================================================== -->
+	<target name="init">
+		<taskdef name="xdoclet" classname="xdoclet.DocletTask" classpathref="InitCuteFramework.class.path" />
+		<taskdef name="hibernatedoclet" classname="xdoclet.modules.hibernate.HibernateDocletTask" classpathref="InitCuteFramework.class.path" />
+		<taskdef name="webdoclet" classname="xdoclet.modules.web.WebDocletTask" classpathref="InitCuteFramework.class.path" />
+		<taskdef name="schemaexport" classname="org.hibernate.tool.hbm2ddl.SchemaExportTask" classpathref="InitCuteFramework.class.path" />
+		<taskdef name="instrument" classname="org.hibernate.tool.instrument.InstrumentTask" classpathref="InitCuteFramework.class.path" />
+		<taskdef classpathref="InitCuteFramework.test.class.path" resource="tasks.properties" />
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Prepares the directory structure                                    -->
+	<!-- =================================================================== -->
+	<target name="prepare" depends="init">
+
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| P R E P A R E                                     |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+
+		<mkdir dir="${InitCuteFramework.dist.dir}" />
+		<mkdir dir="${InitCuteFramework.classes.dir}" />
+		<mkdir dir="${InitCuteFramework.docs.dir}/javadoc" />
+		<mkdir dir="${InitCuteFramework.docs.dir}" />
+		<mkdir dir="${InitCuteFramework.web-inf.dir}/classes" />
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Define the class path                                               -->
+	<!-- =================================================================== -->
+	<path id="InitCuteFramework.class.path">
+		<fileset dir="${InitCuteFramework.lib.dir}">
+			<exclude name="**/asm-2.2.1.jar" />
+			<exclude name="**/InitCuteFramework-3.0.2.jar" />
+		</fileset>
+	</path>
+
+	<path id="InitCuteFramework.test.class.path">
+		<fileset dir="${InitCuteFramework.lib.dir}">
+			<include name="**/*.jar" />
+			<include name="cobertura-1.8.jar" />
+			<exclude name="**/asm.jar" />
+		</fileset>
+	</path>
+
+	<!-- =================================================================== -->
+	<!-- Invoke XDoclet's hibernate                                          -->
+	<!-- =================================================================== -->
+	<target name="hibernate.doclet" depends="prepare">
+
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| R U N N I N G   H I B E R N A T E D O C L E T     |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+-InitCuteFramework.webapp.class.dir--------------------------------------------------+</echo>
+
+		<hibernatedoclet destdir="${InitCuteFramework.java.dir}" mergedir="${InitCuteFramework.java.dir}" excludedtags="@version,@author,@todo,@see" addedtags="@xdoclet-generated at ${TODAY},@copyright The XDoclet Team,@author XDoclet,@version ${version}" force="${InitCuteFramework.xdoclet.force}" verbose="false">
+			<fileset dir="${InitCuteFramework.java.dir}">
+				<!-- com/wondersgroup/ -->
+				<include name="com/wonders/**/bo/*.java" />
+			</fileset>
+			<hibernate version="3.0" />
+		</hibernatedoclet>
+
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Hibernate Schema                                                    -->
+	<!-- =================================================================== -->
+	<target name="hibernate.schema" depends="compile">
+
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| H I B E R N A T E   S C H E M A                   |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+
+		<schemaexport properties="${InitCuteFramework.classes.dir}/hibernate.properties" quiet="no" text="no" drop="no" delimiter=";" output="${InitCuteFramework.src.dir}/sql/schema-export.sql">
+			<fileset dir="${InitCuteFramework.classes.dir}">
+				<include name="**/*.hbm.xml" />
+			</fileset>
+		</schemaexport>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Jar                                                                 -->
+	<!-- =================================================================== -->
+	<target name="jar" depends="compile">
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| J A R  M A K E R                                  |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+
+		<jar destfile="${InitCuteFramework.classes.dir}/$getModule()$.jar" basedir="${InitCuteFramework.classes.dir}" />
+		<copy file="${InitCuteFramework.classes.dir}/$getModule()$.jar" todir="${InitCuteFramework.lib.dir}" />
+		<delete file="${InitCuteFramework.classes.dir}/$getModule()$.jar" />
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Compiles all the classes                                            -->
+	<!-- =================================================================== -->
+	<target name="compile" depends="hibernate.doclet">
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| C O M P I L I N G   S O U R C E S                 |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+		<javac destdir="${InitCuteFramework.classes.dir}" classpathref="InitCuteFramework.class.path" debug="on" deprecation="on" optimize="off">
+			<src path="${InitCuteFramework.java.dir}" />
+			<src path="${InitCuteFramework.test.dir}" />
+		</javac>
+
+		<copy todir="${InitCuteFramework.classes.dir}">
+			<fileset dir="${InitCuteFramework.java.dir}">
+				<include name="*.xml" />
+				<include name="*.properties" />
+				<include name="*.config" />
+				<exclude name="bpmsContext.xml" />
+			</fileset>
+		</copy>
+		<copy todir="${InitCuteFramework.web-inf.dir}/classes">
+			<fileset dir="${InitCuteFramework.java.dir}">
+				<include name="*.xml" />
+				<include name="*.properties" />
+				<exclude name="bpmsContext.xml" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- War Build                                                           -->
+	<!-- =================================================================== -->
+	<target name="war" depends="prepare,compile" description="Build the web application archive">
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| W A R   F I L E   B U I L D                       |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+
+		<delete file="${InitCuteFramework.dist.dir}/InitCuteFramework.war" />
+		<delete dir="${InitCuteFramework.web-inf.dir}/classes" />
+		<war warfile="${InitCuteFramework.dist.dir}/InitCuteFramework.war" webxml="${InitCuteFramework.web-inf.dir}/web.xml">
+			<webinf dir="${InitCuteFramework.web-inf.dir}">
+				<exclude name="web.xml" />
+			</webinf>
+			<lib dir="${InitCuteFramework.lib.running.dir}" />
+			<lib dir="${InitCuteFramework.lib.jdbc.dir}" />
+			<zipfileset dir="${InitCuteFramework.webapp.dir}/images" prefix="images" />
+			<zipfileset dir="${InitCuteFramework.webapp.dir}/css" prefix="css" />
+			<zipfileset dir="${InitCuteFramework.webapp.dir}/js" prefix="js" />
+			<zipfileset dir="${InitCuteFramework.webapp.dir}/inc" prefix="inc" />
+			<zipfileset dir="${InitCuteFramework.doc.dir}/release" prefix="doc" />
+			<zipfileset dir="${InitCuteFramework.docs.dir}/javadoc" prefix="doc/javadoc" />
+			<zipfileset dir="${InitCuteFramework.src.dir}/sql" prefix="sql" />
+			<zipfileset dir="${InitCuteFramework.webapp.dir}" includes="*.jsp" />
+			<zipfileset dir="${InitCuteFramework.webapp.dir}/pmtool" prefix="pmtool" />
+			<classes dir="${InitCuteFramework.classes.dir}" />
+		</war>
+		<copy file="${InitCuteFramework.dist.dir}/InitCuteFramework.war" todir="${InitCuteFramework.web-deploy.dir}" />
+
+	</target>
+
+	<target name="sql.import">
+
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| S Q L   I M P O R T                               |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+
+		<sql driver="${hibernate.connection.driver_class}" url="${hibernate.connection.url}" userid="${hibernate.connection.username}" password="${hibernate.connection.password}" onerror="continue">
+			<classpath>
+				<pathelement location="${InitCuteFramework.lib.dir}/jdbc/oracle-jdbc-1.4-9.2.0.6.jar" />
+				<pathelement location="${InitCuteFramework.lib.dir}/jdbc/jtds-1.2.jar" />
+				<pathelement location="${InitCuteFramework.lib.dir}/jdbc/ifxjdbc.jar" />
+				<pathelement location="${InitCuteFramework.lib.dir}/jdbc/db2jcc_license_cu.jar" />
+				<pathelement location="${InitCuteFramework.lib.dir}/jdbc/db2jcc.jar" />
+			</classpath>
+
+			<transaction src="${InitCuteFramework.dir}/src/sql/${dbName}/schema-export.sql" />
+			<transaction src="${InitCuteFramework.dir}/src/sql/${dbName}/delete.sql" />
+			<transaction src="${InitCuteFramework.dir}/src/sql/${dbName}/system_model.sql" />
+			<transaction src="${InitCuteFramework.dir}/src/sql/${dbName}/bpms.sql" />
+
+		</sql>
+	</target>
+
+
+	<!-- =================================================================== -->
+	<!-- Cobertura Instrument Test                                           -->
+	<!-- =================================================================== -->
+	<target name="instrument" depends="prepare">
+
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| I N S T R U M E N T  S E T T I N G                |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+
+		<cobertura-instrument todir="${InitCuteFramework.coverage.instrument}">
+			<classpath refid="InitCuteFramework.test.class.path" />
+			<ignore regex="org.apache.log4j.*" />
+			<fileset dir="${InitCuteFramework.classes.dir}">
+				<include name="**/*.class" />
+				<exclude name="**/*Test.class" />
+			</fileset>
+		</cobertura-instrument>
+
+		<copy todir="${InitCuteFramework.coverage.instrument}">
+			<fileset dir="${InitCuteFramework.classes.dir}" />
+		</copy>
+	</target>
+	<!-- =================================================================== -->
+	<!-- Clean                                                               -->
+	<!-- =================================================================== -->
+	<target name="clean">
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| C L E A N  P R O J E C T                          |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+
+		<delete file="${InitCuteFramework.dir}/cobertura.ser" />
+		<delete file="${InitCuteFramework.dist.dir}/InitCuteFramework.war" />
+		<delete dir="${InitCuteFramework.docs.dir}" />
+		<delete>
+			<fileset dir="${InitCuteFramework.classes.dir}">
+				<include name="**/*.hbm.xml" />
+			</fileset>
+		</delete>
+	</target>
+
+	<!-- =================================================================== -->
+	<!-- Main                                                                -->
+	<!-- =================================================================== -->
+	<target name="main" depends="war">
+		<echo>Distributable under GNU LGPL license by gun.org</echo>
+	</target>
+
+</project>
+
+

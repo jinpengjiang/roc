@@ -1,0 +1,301 @@
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//说明。。。
+//$..$标记需要解析的标签，如$getJavaPah()$表示根据包名计算的java文件保存路径。
+//内部变量定义区域
+//根据#FILE得知物理文件保存路径、名称
+#FILE=$getJspPah()$/$getClassInstance()$List.jsp
+//#FILE=$getJavaPah()$/dao/$getClass()$DAO.java
+//根据#LEVEL得知文件级别：分模块级别，单个类[数据表]级别
+#LEVEL=CLASS
+//#LEVEL=MODULE
+//以下为输出的物理文件文件内容
+//**List.jsp样例
+<%@ page contentType="text/html; charset=GBK" %> 
+<%@ include file="taglibs.jsp"%>
+<%@ page import="java.util.*"%>
+<%@ page import="$getPackage()$.util.*"%>
+<%@ page import="$getPackage()$.pojo.$getClass()$"%>
+<%@ page import="$getPackage()$.util.Page" %>
+<%
+       	Page pg = (Page)request.getAttribute("page");
+%>
+
+<html>
+<head>
+<title>列表页面</title>
+<link href="/style/style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.STYLE1 {font-size: 12px}
+.STYLE3 {font-size: 12px; font-weight: bold; }
+.STYLE4 {
+	color: #03515d;
+	font-size: 12px;
+}
+-->
+</style>
+
+<script language="javascript">
+
+	var  highlightcolor='#c1ebff';
+//此处clickcolor只能用win系统颜色代码才能成功,如果用#xxxxxx的代码就不行,还没搞清楚为什么:(
+var  clickcolor='#51b2f6';
+function  changeto(){
+source=event.srcElement;
+if  (source.tagName=="TR"||source.tagName=="TABLE")
+return;
+while(source.tagName!="TD")
+source=source.parentElement;
+source=source.parentElement;
+cs  =  source.children;
+//alert(cs.length);
+if  (cs[1].style.backgroundColor!=highlightcolor&&source.id!="nc"&&cs[1].style.backgroundColor!=clickcolor)
+for(i=0;i<cs.length;i++){
+	cs[i].style.backgroundColor=highlightcolor;
+}
+}
+
+function  changeback(){
+if  (event.fromElement.contains(event.toElement)||source.contains(event.toElement)||source.id=="nc")
+return
+if  (event.toElement!=source&&cs[1].style.backgroundColor!=clickcolor)
+//source.style.backgroundColor=originalcolor
+for(i=0;i<cs.length;i++){
+	cs[i].style.backgroundColor="";
+}
+}
+
+function  clickto(){
+source=event.srcElement;
+if  (source.tagName=="TR"||source.tagName=="TABLE")
+return;
+while(source.tagName!="TD")
+source=source.parentElement;
+source=source.parentElement;
+cs  =  source.children;
+//alert(cs.length);
+if  (cs[1].style.backgroundColor!=clickcolor&&source.id!="nc")
+for(i=0;i<cs.length;i++){
+	cs[i].style.backgroundColor=clickcolor;
+}
+else
+for(i=0;i<cs.length;i++){
+	cs[i].style.backgroundColor="";
+}
+}
+
+	function go(c){
+	if(!checkGo(c))
+		return false;
+
+	var a=document.form1.goInput.value;
+	document.form1.currentPage.value=a;
+       	document.form1.submit();
+	}
+
+	function checkGo(c){
+	var a=document.form1.goInput.value;
+	if(a=="")
+	{
+		document.form1.goInput.value=1;
+		//obj.focus();
+		return true;
+	}
+	if(a>c)
+	{
+		document.form1.goInput.value=c;
+		//obj.focus();
+		return true;
+	}
+	var regex=/^\d+$/;
+	if(regex.test(a)==false)
+	{
+	alert("请输入正确的页码!");
+		document.form1.goInput.focus();
+		return false;
+	}else{
+	if(a>c)
+	{
+		document.form1.goInput.value=c;
+		//obj.focus();
+		return true;
+	}
+	}
+	
+	return true;
+
+	}
+
+	function page(c){
+	document.form1.currentPage.value=c;
+       	document.form1.submit();
+       }       
+
+	function deleteTd(a){
+		if(confirm("确定要删除此数据！")){
+      window.location.href="./$getClassInstance()$Action.do?$getClassId()$="+a+"&method=delete";
+			//document.getElementById(tr).style.display="none";
+			//document.form1.action="./$getClassInstance()$DeleteAction.do?$getClassId()$="+a+"&method=delete";
+      //document.form1.submit();
+      //alert("删除成功!");
+      //window.location.href="./$getClassInstance()$Action.do?method=listWithPage";
+		}else{
+			return false;
+		}
+	}
+
+</script>
+ 
+</head>
+  
+<body>
+<form name="search" action="../$getClass()$/$getClassInstance()$Action.do?doType=2" method="post">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td height="30" background="../images/tab_05.gif">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="12" height="30"><img src="../images/tab_03.gif" width="12" height="30" /></td>
+					<td>
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td width="46%" valign="middle">
+									<table width="100%" border="0" cellspacing="0" cellpadding="0">
+										<tr>
+											<td width="5%"><div align="center"><img src="../images/tb.gif" width="16" height="16" /></div></td>
+											<td width="95%" class="STYLE1"><span class="STYLE3">你当前的位置</span>：[XXX]-[XXX]</td>
+										</tr>
+									</table>
+								</td>
+								<td width="54%">
+									<table border="0" align="right" cellpadding="0" cellspacing="0">
+										<tr>
+											<td width="60">
+												<table width="87%" border="0" cellpadding="0" cellspacing="0">
+													<tr>
+														<td class="STYLE1"><div align="center"><input type="checkbox" name="checkbox62" value="checkbox" /></div></td>
+														<td class="STYLE1"><div align="center">全选</div></td>
+													</tr>
+												</table>
+											</td>
+											<td width="60">
+												<table width="90%" border="0" cellpadding="0" cellspacing="0">
+													<tr>
+														<td class="STYLE1"><div align="center"><img src="../images/22.gif" width="14" height="14" /></div></td>
+														<td class="STYLE1"><div align="center">新增</div></td>
+													</tr>
+												</table>
+											</td>
+											<td width="60">
+												<table width="90%" border="0" cellpadding="0" cellspacing="0">
+													<tr>
+														<td class="STYLE1"><div align="center"><img src="../images/33.gif" width="14" height="14" /></div></td>
+														<td class="STYLE1"><div align="center">修改</div></td>
+													</tr>
+												</table>
+											</td>
+											<td width="52">
+												<table width="88%" border="0" cellpadding="0" cellspacing="0">
+													<tr>
+														<td class="STYLE1"><div align="center"><img src="../images/11.gif" width="14" height="14" /></div></td>
+														<td class="STYLE1"><div align="center">删除</div></td>
+													</tr>
+												</table>
+											</td>
+										</tr>	
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td width="16"><img src="../images/tab_07.gif" width="16" height="30" /></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="8" background="../images/tab_12.gif">&nbsp;</td>
+					<td>
+						<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="b5d6e6" onmouseover="changeto()"  onmouseout="changeback()">
+							<tr>
+								<td width="5%" height="25" background="../images/bg.gif" bgcolor="#FFFFFF">
+									<div align="center"><input type="checkbox" name="checkbox" value="checkbox" /></div>
+								</td>
+								<td width="5%" height="25" background="../images/bg.gif" bgcolor="#FFFFFF"><div align="center"><span class="STYLE1">序号</span></div></td>
+								$FOR.CLASS.PROPERTY$
+								<td width="12%" height="25" background="../images/bg.gif" bgcolor="#FFFFFF">
+									<div align="center"><span class="STYLE1">$getClassPropertyTitle()$</span></div>
+								</td>
+								$ENDFOR.CLASS.PROPERTY$
+								<td width="10%" height="25" background="../images/bg.gif" bgcolor="#FFFFFF" class="STYLE1"><div align="center">基本操作</div></td>
+							</tr>	
+						</table>
+					</td>
+					<td width="8" background="../images/tab_15.gif">&nbsp;</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<% 
+	int i=0;
+    List<$getClass()$> list = (List)pg.getResult();
+    System.out.println("list="+list.size());
+    for($getClass()$ $getClassInstance()$ : list){
+	i++;
+    %>
+	<tr>
+		<td>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="8" background="../images/tab_12.gif">&nbsp;</td>
+					<td>
+						<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="b5d6e6" onmouseover="changeto()"  onmouseout="changeback()">
+							<tr>
+								<td width="5%" height="23"  bgcolor="#FFFFFF" align="center">
+									<input type="checkbox" name="checkbox<%=i%>" value="checkbox" />
+								</td>
+								<td width="5%" height="23" class="STYLE1"  bgcolor="#FFFFFF" align="center"><%=i%></td>
+								$FOR.CLASS.PROPERTY$
+								<td width="12%" height="23"  bgcolor="#FFFFFF" align="center" class="STYLE1">
+									<%=Util.strNull($getClassInstance()$.get$getClassPropertyNameIC()$()) %>&nbsp;
+								</td>
+								$ENDFOR.CLASS.PROPERTY$
+								<td height="23" bgcolor="#FFFFFF" align="center" class="STYLE4"><img src="../images/edt.gif" width="16" height="16" />编辑&nbsp; &nbsp;<img src="../images/del.gif" width="16" height="16" />删除</td>
+							</tr>	
+						</table>
+					</td>
+					<td width="8" background="../images/tab_15.gif">&nbsp;</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<%}%>
+	<tr>
+		<td height="35" background="../images/tab_19.gif">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="12" height="35"><img src="../images/tab_18.gif" width="12" height="35" /></td>
+					<td>
+						<%=pg.getFooter() %>
+						
+					</td>
+					<td width="16"><img src="../images/tab_20.gif" width="16" height="35" /></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</form>
+</body>
+</html>

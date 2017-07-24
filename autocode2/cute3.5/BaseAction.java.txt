@@ -1,0 +1,33 @@
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//说明。。。
+//$..$标记需要解析的标签，如$getJavaPah()$表示根据包名计算的java文件保存路径。
+//内部变量定义区域
+//根据#FILE得知物理文件保存路径、名称
+//#FILE=$getJspPah()$/$getClassInstance()$Add.jsp
+//#FILE=$getJavaPah()$/dao/$getClass()$DAO.java
+#FILE=$getJavaPah()$/action/common/BaseAction.java
+//根据#LEVEL得知文件级别：分模块级别，单个类[数据表]级别
+//#LEVEL=CLASS
+#LEVEL=MODULE
+//以下为输出的物理文件文件内容
+
+//**Action.java样例
+
+package $getPackage()$.action.common;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts.actions.DispatchAction;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
+public class BaseAction extends DispatchAction {
+
+	public Object getService(String serviceName,HttpServletRequest request){
+		ApplicationContext context=WebApplicationContextUtils.getWebApplicationContext(request.getSession().getServletContext());
+		return context.getBean(serviceName);
+}
+}

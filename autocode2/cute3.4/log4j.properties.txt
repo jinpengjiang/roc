@@ -1,0 +1,16 @@
+#FILE=$getJavaPah()$/resource/log4j.properties
+#LEVEL=MODULE
+
+log4j.rootLogger=WARN, stdout, logfile
+
+#Console Print
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%d %p [%c] - %m%n
+
+#Daily Print
+log4j.appender.logfile=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.logfile.File=${countries.root}/log/callcenter.log
+log4j.appender.logfile.DatePattern='.'yyyy-MM-dd
+log4j.appender.logfile.layout=org.apache.log4j.PatternLayout
+log4j.appender.logfile.layout.ConversionPattern=%d %p [%c] - %m%n

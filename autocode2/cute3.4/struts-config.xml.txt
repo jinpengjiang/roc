@@ -1,0 +1,34 @@
+//#FILE=$getJspPah()$/struts/struts-config.xml
+#FILE=$getRootPah()$/web/WEB-INF/struts-config.xml
+#LEVEL=MODULE
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+  <data-sources />
+  <form-beans>
+  	$FOR.CLASS$
+    <form-bean name="$getClassInstance()$Form" type="$getPackage()$.form.$getClass()$Form" />
+    $ENDFOR.CLASS$
+  </form-beans>
+  <global-exceptions />
+  <global-forwards />
+  <action-mappings>
+  	$FOR.CLASS$
+  	 <action name="$getClassInstance()$Form"  type="$getPackage()$.action.$getClass()$Action" scope="request" path="/$getModule()$/$getClassInstance()$Action">
+      <forward name="list" path="/$getModule()$/$getClassInstance()$List.jsp" />
+      <forward name="add" path="/$getModule()$/$getClassInstance()$Add.jsp" />
+      <forward name="update" path="/$getModule()$/$getClassInstance()$Update.jsp" />
+      <forward name="success" path="/$getModule()$/$getClassInstance()$Action.do?doType=2" />
+    </action>  
+    $ENDFOR.CLASS$
+
+  </action-mappings>
+  <controller processorClass="org.springframework.web.struts.DelegatingRequestProcessor" />
+	
+  <message-resources parameter="$getPackage()$.resource.ApplicationResources" />
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml" />
+	</plug-in>
+</struts-config>

@@ -1,0 +1,116 @@
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//说明。。。
+//$..$标记需要解析的标签，如$getJavaPah()$表示根据包名计算的java文件保存路径。
+//内部变量定义区域
+//根据#FILE得知物理文件保存路径、名称
+//#FILE=$getJspPah()$/$getClassInstance()$Add.jsp
+//#FILE=$getJavaPah()$/dao/$getClass()$DAO.java
+#FILE=$getJavaPah()$/util/Util.java
+//根据#LEVEL得知文件级别：分模块级别，单个类[数据表]级别
+//#LEVEL=CLASS
+#LEVEL=MODULE
+//以下为输出的物理文件文件内容
+//**Action.java样例
+package $getPackage()$.util;
+
+import java.text.SimpleDateFormat;
+
+/**
+ * 工具类
+ * @author Jesse Lu
+ *
+ */
+public class Util {
+
+	/**
+	 * 判断字符串是否为自然数
+	 * @param code
+	 * @return
+	 */
+	public static boolean isNaturalNum(String code){
+		if(null == code) return false;
+		return code.matches("^[+]?+\\d+");
+	}
+	
+	/**
+	 * 判断字符串是否为整数
+	 * @param code
+	 * @return
+	 */
+	public static boolean isInteger(String code){
+		if(null == code) return false;
+		return code.matches("^[+-]?+\\d+");
+	}
+	
+    public static java.util.Date str2date(String strValue)
+    {
+        if(strValue == null)
+            return null;
+        if(strValue.equals(""))
+            return null;
+		java.util.Date theDate;
+        try
+        {
+            String str = strValue.substring(4, 5);
+            SimpleDateFormat theFormat = new SimpleDateFormat("yyyy" + str + "MM" + str + "dd" + " " + "HH" + ":" + "mm" + ":" + "ss");
+            theDate = theFormat.parse(strValue);
+        }
+        catch(Exception ex)
+        {
+            theDate = null;
+        }
+        return theDate;
+    }
+    
+   public static String strNull(String str)
+    {
+        if(str == null)
+            return "";
+        else
+            return str;
+    }
+    
+      public static String strNull(Integer str)
+    {
+        if(str == null)
+            return "";
+        else
+            return Integer.toString(str);
+    }
+      
+      public static String strNull(java.sql.Date str)
+      {
+          if(str == null)
+              return "";
+          else
+              return String.valueOf(str);
+      }
+      
+      public static String strNull(Object str)
+      {
+          if(str == null)
+              return "";
+          else
+              return str.toString();
+      }
+      
+      public static String getFormatDate(Date date)
+	  {
+    	  if(date == null)
+              return "";
+       SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	   return dateFormat.format(date);
+	  }
+      
+      public static String getFormatTime(Date date)
+	  {
+    	  if(date == null)
+              return "";
+       SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	   return dateFormat.format(date);
+	  }
+      
+}
+

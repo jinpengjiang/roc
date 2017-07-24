@@ -1,0 +1,158 @@
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//说明。。。
+//$..$标记需要解析的标签，如$getJavaPah()$表示根据包名计算的java文件保存路径。
+//内部变量定义区域
+//根据#FILE得知物理文件保存路径、名称
+//#FILE=$getJspPah()$/$getClassInstance()$Add.jsp
+//#FILE=$getJavaPah()$/dao/$getClass()$DAO.java
+#FILE=$getJavaPah()$/action/$getClass()$Action.java
+//根据#LEVEL得知文件级别：分模块级别，单个类[数据表]级别
+#LEVEL=CLASS
+//#LEVEL=MODULE
+//以下为输出的物理文件文件内容
+//**Action.java样例
+package $getPackage()$.action;
+
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.hibernate.Query;
+
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import $getPackage()$.action.common.BaseAction;
+import $getPackage()$.pojo.*;
+import $getPackage()$.service.$getClass()$Manager;
+import $getPackage()$.util.*;
+import $getPackage()$.form.$getClass()$Form;
+
+public class $getClass()$Action extends BaseAction{
+	       private $getClass()$Manager $getClassInstance()$Manager=null;
+	       
+	       	public void set$getClass()$Manager($getClass()$Manager $getClassInstance()$Manager) {
+				this.$getClassInstance()$Manager = $getClassInstance()$Manager;
+			}
+			
+		public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		$getClassInstance()$Manager=($getClass()$Manager)this.getService("$getClassInstance()$Manager", request);
+		$getClass()$Form $getClassInstance()$Form = ($getClass()$Form) form;
+		String forward = "list";  
+	    int doType = Integer.valueOf(request.getParameter("doType"));
+	    int currentPage = 1;
+
+		switch (doType) { 
+		        //跳转到添加 
+		        case 0:  
+		        forward = "add";
+		        break;
+  				//添加
+		        case 1:  
+		        forward = "success";
+		    	$getClass()$ $getClassInstance()$ = new $getClass()$();
+				
+				$getClassInstance()$.set$getClassIdIC()$($getClassInstance()$Form.get$getClassIdIC()$());
+				$FOR.CLASS.PROPERTY$
+					$getClassInstance()$.set$getClassPropertyNameIC()$($getClassInstance()$Form.get$getClassPropertyNameIC()$());
+				$ENDFOR.CLASS.PROPERTY$;
+					
+		    	$getClassInstance()$Manager.add$getClass()$($getClassInstance()$);
+		        break;
+		        //列表 
+		        case 2:
+		        forward = "list";
+		      
+		        long totalRows = $getClassInstance()$Manager.getAll$getClass()$Rows().intValue();
+		       	  
+		        
+				if(Util.isNaturalNum(request.getParameter("pageNo"))){
+			    	currentPage = Integer.valueOf(request.getParameter("pageNo"));
+			    }
+				Page page = new Page(currentPage);
+				
+				if(Util.isNaturalNum(request.getParameter("pageSize"))){
+					page.setPageSize(Integer.valueOf(request.getParameter("pageSize")));
+			    }
+				
+		    	List resultRows = $getClassInstance()$Manager.getAll$getClass()$(page.getCurrentStartOfPage(), page.getPageSize());
+				
+		    	page.setTotalCount(totalRows);
+		    	page.setResult(resultRows);
+		    	request.setAttribute("page", page);
+
+		        break; 
+		        //删除   
+		        case 3:
+			    forward = "success";			
+			    $getClass()$ $getClassInstance()$delete=$getClassInstance()$Manager.get$getClass()$($getClassInstance()$Form.get$getClassIdIC()$()); 
+			    $getClassInstance()$Manager.delete$getClass()$($getClassInstance()$delete);
+			     break;
+			     
+			    //修改     
+		        case 4:
+				forward = "success";
+				//$getClass()$ $getClassInstance()$update=$getClassInstance()$Manager.get$getClass()$(id);
+				$getClass()$ $getClassInstance()$update=new $getClass()$();
+				$getClassInstance()$update.set$getClassIdIC()$($getClassInstance()$Form.get$getClassIdIC()$());
+				$FOR.CLASS.PROPERTY$
+					$getClassInstance()$update.set$getClassPropertyNameIC()$($getClassInstance()$Form.get$getClassPropertyNameIC()$());
+				$ENDFOR.CLASS.PROPERTY$;
+	
+				$getClassInstance()$Manager.update$getClass()$($getClassInstance()$update);
+				break;
+				// 跳转到修改    
+		        case 5:
+				forward = "update";
+				$getClassInstance()$ =$getClassInstance()$Manager.get$getClass()$($getClassInstance()$Form.get$getClassIdIC()$());
+				request.setAttribute("bean", $getClassInstance()$);
+				break;   
+				
+				// 查询
+		       /* case 6:
+					forward = "list7";
+					String name1=Util.strNull(request.getParameter("XXX"));
+					String name2=Util.strNull(request.getParameter("XXX2"));
+					
+					String[] args={name1,name2};
+
+				    totalRows = $getClassInstance()$Manager.get$getClass()$RowsByCondition(args).intValue();
+				    if(totalRows>0){
+							if(Util.isNaturalNum(request.getParameter("pageNo"))){
+						    	currentPage = Integer.valueOf(request.getParameter("pageNo"));
+						    	}
+							page = new Page(currentPage);
+				    	
+							if(Util.isNaturalNum(request.getParameter("pageSize"))){
+								page1.setPageSize(Integer.valueOf(request.getParameter("pageSize")));
+						    }
+							
+				    resultRows = $getClassInstance()$Manager.findByHqlByCondition(args,page.getCurrentStartOfPage(), page.getPageSize());
+			    	page.setTotalCount(totalRows1);
+			    	page.setResult(resultRows1);
+				     }
+				    request.setAttribute("page", page);
+				    	
+				break;  */	
+		        default:  
+		        forward = "list"; 
+		        break;  
+		    }  
+		    return mapping.findForward(forward);  
+
+	
+	}
+}	
+			
+	       
+	       
+	       
+	       
+	       
+	       
+	       
+	       
+	       
+

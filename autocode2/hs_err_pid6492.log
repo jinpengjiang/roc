@@ -1,0 +1,787 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x000000006da9ccf7, pid=6492, tid=4560
+#
+# JRE version: 6.0_29-b11
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (20.4-b02 mixed mode windows-amd64 compressed oops)
+# Problematic frame:
+# V  [jvm.dll+0x20ccf7]
+#
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000000000051d800):  VMThread [stack: 0x00000000062d0000,0x00000000063d0000] [id=4560]
+
+siginfo: ExceptionCode=0xc0000005, reading address 0x0000000000000000
+
+Registers:
+RAX=0x0000000000000000, RBX=0x00000000063cf3d0, RCX=0x00000000063cf3d0, RDX=0x0000000000000000
+RSP=0x00000000063cf260, RBP=0x00000000000000b7, RSI=0x0000000000000000, RDI=0x00000000063cfa60
+R8 =0x0000000000000000, R9 =0x0000000000000000, R10=0x00000000bc8f2b40, R11=0x000000006de63f80
+R12=0x0000000000000069, R13=0x00000000004a98c8, R14=0x000000006d890000, R15=0x0000000000000000
+RIP=0x000000006da9ccf7, EFLAGS=0x0000000000010206
+
+Top of Stack: (sp=0x00000000063cf260)
+0x00000000063cf260:   00000000078a0580 0000000007a30080
+0x00000000063cf270:   00000000063cf3d0 0000000000000000
+0x00000000063cf280:   0000000000000100 0000000000000000
+0x00000000063cf290:   0000000000000602 0000000000000000
+0x00000000063cf2a0:   00000000063cf330 00000000006012f0
+0x00000000063cf2b0:   00000000006012f0 0000000007a30080
+0x00000000063cf2c0:   0000000000000000 000007fefd7a133c
+0x00000000063cf2d0:   000000fb00000000 0000000000000008
+0x00000000063cf2e0:   00000000063cf610 00000000075f0000
+0x00000000063cf2f0:   0000000000000010 000000006d936ba8
+0x00000000063cf300:   0000000000000100 0000000000600158
+0x00000000063cf310:   00000000004786b0 00000000006076a0
+0x00000000063cf320:   000000000765c850 000000006da9cab8
+0x00000000063cf330:   00000000025ffa80 000000006d95290d
+0x00000000063cf340:   00000000063cf4a0 00000000004786b0
+0x00000000063cf350:   00000000bc8f2b40 000000006da9c922 
+
+Instructions: (pc=0x000000006da9ccf7)
+0x000000006da9ccd7:   00 fb cb 20 00 9e cc 20 00 48 53 48 81 ec 20 01
+0x000000006da9cce7:   00 00 48 8b 41 08 c7 41 10 00 00 00 00 48 8b d9
+0x000000006da9ccf7:   48 8b 10 80 7a 12 28 74 30 48 8d 15 21 d1 3d 00
+0x000000006da9cd07:   48 8d 4c 24 20 41 b8 28 00 00 00 e8 09 4b df ff 
+
+
+Register to memory mapping:
+
+RAX=0x0000000000000000 is an unknown value
+RBX=0x00000000063cf3d0 is an unknown value
+RCX=0x00000000063cf3d0 is an unknown value
+RDX=0x0000000000000000 is an unknown value
+RSP=0x00000000063cf260 is an unknown value
+RBP=0x00000000000000b7 is an unknown value
+RSI=0x0000000000000000 is an unknown value
+RDI=0x00000000063cfa60 is an unknown value
+R8 =0x0000000000000000 is an unknown value
+R9 =0x0000000000000000 is an unknown value
+R10=0x00000000bc8f2b40 is an oop
+{constant pool} 
+ - klass: {other class}
+ - cache: 0x00000000bc8f40a0
+ -   1 :  : 'autocode/build/BuildTxt'
+ -   2 :  : 'autocode/build/BuildTxt'
+ -   3 :  : 'java/lang/Object'
+ -   4 :  : 'java/lang/Object'
+ -   5 :  : 'inFile'
+ -   6 :  : 'Ljava/lang/String;'
+ -   7 :  : 'outFile'
+ -   8 :  : 'inFileName'
+ -   9 :  : 'outFileName'
+ -  10 :  : 'out'
+ -  11 :  : 'Ljava/io/PrintWriter;'
+ -  12 :  : 'in'
+ -  13 :  : 'Ljava/io/RandomAccessFile;'
+ -  14 :  : 'list2'
+ -  15 :  : 'Ljava/util/List;'
+ -  16 :  : 'level'
+ -  17 :  : 'dirs'
+ -  18 :  : 'type'
+ -  19 :  : 'I'
+ -  20 :  : 'allfor'
+ -  21 :  : 'k'
+ -  22 :  : 'h'
+ -  23 :  : 'f'
+ -  24 :  : 'y'
+ -  25 :  : '[I'
+ -  26 :  : 'property'
+ -  27 :  : 'fortemp'
+ -  28 :  : '[[Ljava/lang/String;'
+ -  29 :  : 'println'
+ -  30 :  : '[Ljava/lang/String;'
+ -  31 :  : 'start'
+ -  32 :  : 'J'
+ -  33 :  : 'starttype'
+ -  34 :  : 'end'
+ -  35 :  : 'seek'
+ -  36 :  : 'p'
+ -  37 :  : 'g'
+ -  38 :  : 'temp'
+ -  39 :  : 'Ljava/util/Map;'
+ -  40 :  : 't'
+ -  41 :  : 'q'
+ -  42 :  : 'z'
+ -  43 :  : '[[I'
+ -  44 :  : 'path'
+ -  45 :  : 'tagKey'
+ -  46 :  : 'tagMap'
+ -  47 :  : 'ReadFile'
+ -  48 :  : '(Ljava/lang/String;)Z'
+ -  49 :  : 'Code'
+ -  50 :  : klass_index=51 name_and_type_index=53
+ -  51 :  : 'java/lang/System'
+ -  52 :  : 'java/lang/System'
+ -  53 :  : name_index=10 signature_index=54
+ -  54 :  : 'Ljava/io/PrintStream;'
+ -  55 :  : "ReadFile(String file) start" {0xbc8cd9b8}
+ -  56 :  : 'ReadFile(String file) start'
+ -  57 :  : klass_index=58 name_and_type_index=60
+ -  58 :  : 'java/io/PrintStream'
+ -  59 :  : 'java/io/PrintStream'
+ -  60 :  : name_index=29 signature_index=61
+ -  61 :  : '(Ljava/lang/String;)V'
+ -  62 :  : 'java/io/RandomAccessFile'
+ -  63 :  : 'java/io/RandomAccessFile'
+ -  64 :  : 'java/io/File'
+ -  65 :  : 'java/io/File'
+ -  66 :  : klass_index=64 name_and_type_index=67
+ -  67 :  : name_index=68 signature_index=61
+ -  68 :  : '<init>'
+ -  69 :  : "r" {0xbc8ce128}
+ -  70 :  : 'r'
+ -  71 :  : klass_index=62 name_and_type_index=72
+ -  72 :  : name_index=68 signature_index=73
+ -  73 :  : '(Ljava/io/File;Ljava/lang/String;)V'
+ -  74 :  : klass_index=1 name_and_type_index=75
+ -  75 :  : name_index=12 signature_index=13
+ -  76 :  : klass_index=1 name_and_type_index=77
+ -  77 :  : name_index=9 signature_index=6
+ -  78 :  : 'java/io/PrintWriter'
+ -  79 :  : 'java/io/PrintWriter'
+ -  80 :  : 'java/io/FileOutputStream'
+ -  81 :  : 'java/io/FileOutputStream'
+ -  82 :  : klass_index=80 name_and_type_index=83
+ -  83 :  : name_index=68 signature_index=84
+ -  84 :  : '(Ljava/io/File;Z)V'
+ -  85 :  : klass_index=78 name_and_type_index=86
+ -  86 :  : name_index=68 signature_index=87
+ -  87 :  : '(Ljava/io/OutputStream;)V'
+ -  88 :  : klass_index=1 name_and_type_index=89
+ -  89 :  : name_index=10 signature_index=11
+ -  90 :  : klass_index=1 name_and_type_index=91
+ -  91 :  : name_index=5 signature_index=6
+ -  92 :  : "GBK" {0xbc155af8}
+ -  93 :  : 'GBK'
+ -  94 :  : klass_index=95 name_and_type_index=97
+ -  95 :  : 'java/lang/String'
+ -  96 :  : 'java/lang/String'
+ -  97 :  : name_index=98 signature_index=99
+ -  98 :  : 'getBytes'
+ -  99 :  : '(Ljava/lang/String;)[B'
+ - 100 :  : klass_index=95 name_and_type_index=101
+ - 101 :  : name_index=68 signature_index=102
+ - 102 :  : '([B)V'
+ - 103 :  : klass_index=1 name_and_type_index=104
+ - 104 :  : name_index=105 signature_index=61
+ - 105 :  : 'WriteFile'
+ - 106 :  : klass_index=1 name_and_type_index=107
+ - 107 :  : name_index=34 signature_index=6
+ - 108 :  : klass_index=109 name_and_type_index=111
+ - 109 :  : 'java/lang/Long'
+ - 110 :  : 'java/lang/Long'
+ - 111 :  : name_index=112 signature_index=113
+ - 112 :  : 'parseLong'
+ - 113 :  : '(Ljava/lang/String;)J'
+ - 114 :  : klass_index=62 name_and_type_index=115
+ - 115 :  : name_index=35 signature_index=116
+ - 116 :  : '(J)V'
+ - 117 :  : klass_index=1 name_and_type_index=118
+ - 118 :  : name_index=119 signature_index=120
+ - 119 :  : 'backAll'
+ - 120 :  : '()V'
+ - 121 :  : klass_index=62 name_and_type_index=122
+ - 122 :  : name_index=123 signature_index=124
+ - 123 :  : 'readLine'
+ - 124 :  : '()Ljava/lang/String;'
+ - 125 :  : klass_index=78 name_and_type_index=126
+ - 126 :  : name_index=127 signature_index=120
+ - 127 :  : 'flush'
+ - 128 :  : klass_index=78 name_and_type_index=129
+ - 129 :  : name_index=130 signature_index=120
+ - 130 :  : 'close'
+ - 131 :  : klass_index=62 name_and_type_index=129
+ - 132 :  : 'java/lang/StringBuffer'
+ - 133 :  : 'java/lang/StringBuffer'
+ - 134 :  : "one file " {0xbc8f50e8}
+ - 135 :  : 'one file '
+ - 136 :  : klass_index=132 name_and_type_index=67
+ - 137 :  : klass_index=132 name_and_type_index=138
+ - 138 :  : name_index=139 signature_index=140
+ - 139 :  : 'append'
+ - 140 :  : '(Ljava/lang/String;)Ljava/lang/StringBuffer;'
+ - 141 :  : " make success" {0xbc8f5130}
+ - 142 :  : ' make success'
+ - 143 :  : klass_index=132 name_and_type_index=144
+ - 144 :  : name_index=145 signature_index=124
+ - 145 :  : 'toString'
+ - 146 :  : klass_index=147 name_and_type_index=149
+ - 147 :  : 'java/io/FileNotFoundException'
+ - 148 :  : 'java/io/FileNotFoundException'
+ - 149 :  : name_index=150 signature_index=120
+ - 150 :  : 'printStackTrace'
+ - 151 :  : klass_index=152 name_and_type_index=149
+ - 152 :  : 'java/io/IOException'
+ - 153 :  : 'java/io/IOException'
+ - 154 :  : 'LineNumberTable'
+ - 155 :  : 'LocalVariableTable'
+ - 156 :  : 'this'
+ - 157 :  : 'Lautocode/build/BuildTxt;'
+ - 158 :  : 'file'
+ - 159 :  : 'ab'
+ - 160 :  : 'Ljava/io/File;'
+ - 161 :  : 'm'
+ - 162 :  : 'byteStr'
+ - 163 :  : '[B'
+ - 164 :  : 'sr'
+ - 165 :  : 'e'
+ - 166 :  : 'Ljava/io/FileNotFoundException;'
+ - 167 :  : 'Ljava/io/IOException;'
+ - 168 :  : 'Exceptions'
+ - 169 :  : klass_index=1 name_and_type_index=170
+ - 170 :  : name_index=171 signature_index=48
+ - 171 :  : 'check'
+ - 172 :  : klass_index=1 name_and_type_index=173
+ - 173 :  : name_index=174 signature_index=48
+ - 174 :  : 'ClassTagChange'
+ - 175 :  : 'File'
+ - 176 :  : "//" {0xbc54eb90}
+ - 177 :  : '//'
+ - 178 :  : klass_index=95 name_and_type_index=179
+ - 179 :  : name_index=180 signature_index=48
+ - 180 :  : 'startsWith'
+ - 181 :  : "#FILE" {0xbc8cd8c8}
+ - 182 :  : '#FILE'
+ - 183 :  : "#LEVEL" {0xbc8cd408}
+ - 184 :  : '#LEVEL'
+ - 185 :  : klass_index=95 name_and_type_index=186
+ - 186 :  : name_index=187 signature_index=188
+ - 187 :  : 'length'
+ - 188 :  : '()I'
+ - 189 :  : "" {0xbc1017a8}
+ - 190 :  : ''
+ - 191 :  : klass_index=95 name_and_type_index=192
+ - 192 :  : name_index=193 signature_index=194
+ - 193 :  : 'equals'
+ - 194 :  : '(Ljava/lang/Object;)Z'
+ - 195 :  : klass_index=78 name_and_type_index=60
+ - 196 :  : 'getAttribute'
+ - 197 :  : klass_index=1 name_and_type_index=198
+ - 198 :  : name_index=199 signature_index=61
+ - 199 :  : 'autoFindFiles'
+ - 200 :  : klass_index=1 name_and_type_index=201
+ - 201 :  : name_index=44 signature_index=30
+ - 202 :  : "error model path" {0xbc8f5180}
+ - 203 :  : 'error model path'
+ - 204 :  : "model:" {0xbc8cd3c8}
+ - 205 :  : 'model:'
+ - 206 :  : klass_index=1 name_and_type_index=207
+ - 207 :  : name_index=8 signature_index=6
+ - 208 :  : klass_index=1 name_and_type_index=209
+ - 209 :  : name_index=210 signature_index=211
+ - 210 :  : 'getAttributeValue'
+ - 211 :  : '(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;'
+ - 212 :  : klass_index=1 name_and_type_index=213
+ - 213 :  : name_index=16 signature_index=6
+ - 214 :  : "level:" {0xbc8cd888}
+ - 215 :  : 'level:'
+ - 216 :  : klass_index=1 name_and_type_index=217
+ - 217 :  : name_index=218 signature_index=61
+ - 218 :  : 'tagFileChange'
+ - 219 :  : klass_index=1 name_and_type_index=220
+ - 220 :  : name_index=221 signature_index=120
+ - 221 :  : 'mkdir'
+ - 222 :  : 'model'
+ - 223 :  : 'i'
+ - 224 :  : 'inputLevel'
+ - 225 :  : 'inputFilePath'
+ - 226 :  : 'java/io/BufferedReader'
+ - 227 :  : 'java/io/BufferedReader'
+ - 228 :  : 'java/io/FileReader'
+ - 229 :  : 'java/io/FileReader'
+ - 230 :  : klass_index=228 name_and_type_index=67
+ - 231 :  : klass_index=226 name_and_type_index=232
+ - 232 :  : name_index=68 signature_index=233
+ - 233 :  : '(Ljava/io/Reader;)V'
+ - 234 :  : klass_index=95 name_and_type_index=235
+ - 235 :  : name_index=236 signature_index=237
+ - 236 :  : 'substring'
+ - 237 :  : '(I)Ljava/lang/String;'
+ - 238 :  : klass_index=226 name_and_type_index=122
+ - 239 :  : 'arrtibute'
+ - 240 :  : 'input'
+ - 241 :  : 'Ljava/io/BufferedReader;'
+ - 242 :  : klass_index=1 name_and_type_index=243
+ - 243 :  : name_index=17 signature_index=15
+ - 244 :  : klass_index=245 name_and_type_index=247
+ - 245 :  : 'java/util/List'
+ - 246 :  : 'java/util/List'
+ - 247 :  : name_index=248 signature_index=249
+ - 248 :  : 'iterator'
+ - 249 :  : '()Ljava/util/Iterator;'
+ - 250 :  : klass_index=251 name_and_type_index=253
+ - 251 :  : 'java/util/Iterator'
+ - 252 :  : 'java/util/Iterator'
+ - 253 :  : name_index=254 signature_index=255
+ - 254 :  : 'next'
+ - 255 :  : '()Ljava/lang/Object;'
+ - 256 :  : "/" {0xbc2a7330}
+ - 257 :  : '/'
+ - 258 :  : klass_index=95 name_and_type_index=259
+ - 259 :  : name_index=260 signature_index=261
+ - 260 :  : 'lastIndexOf'
+ - 261 :  : '(Ljava/lang/String;)I'
+ - 262 :  : klass_index=95 name_and_type_index=263
+ - 263 :  : name_index=236 signature_index=264
+ - 264 :  : '(II)Ljava/lang/String;'
+ - 265 :  : klass_index=64 name_and_type_index=266
+ - 266 :  : name_index=267 signature_index=268
+ - 267 :  : 'exists'
+ - 268 :  : '()Z'
+ - 269 :  : klass_index=64 name_and_type_index=270
+ - 270 :  : name_index=271 signature_index=268
+ - 271 :  : 'mkdirs'
+ - 272 :  : klass_index=64 name_and_type_index=273
+ - 273 :  : name_index=68 signature_index=274
+ - 274 :  : '(Ljava/lang/String;Ljava/lang/String;)V'
+ - 275 :  : klass_index=64 name_and_type_index=276
+ - 276 :  : name_index=277 signature_index=268
+ - 277 :  : 'createNewFile'
+ - 278 :  : "CLASS" {0xbc8cd978}
+ - 279 :  : 'CLASS'
+ - 280 :  : klass_index=1 name_and_type_index=281
+ - 281 :  : name_index=47 signature_index=48
+ - 282 :  : "*********************************************************************" {0xbc8f51d0}
+ - 283 :  : '*********************************************************************'
+ - 284 :  : klass_index=1 name_and_type_index=285
+ - 285 :  : name_index=18 signature_index=19
+ - 286 :  : 'autocode/build/BuildTxt2'
+ - 287 :  : 'autocode/build/BuildTxt2'
+ - 288 :  : klass_index=286 name_and_type_index=289
+ - 289 :  : name_index=68 signature_index=120
+ - 290 :  : klass_index=286 name_and_type_index=291
+ - 291 :  : name_index=47 signature_index=292
+ - 292 :  : '(Ljava/lang/String;Ljava/lang/String;)Z'
+ - 293 :  : klass_index=251 name_and_type_index=294
+ - 294 :  : name_index=295 signature_index=268
+ - 295 :  : 'hasNext'
+ - 296 :  : klass_index=245 name_and_type_index=297
+ - 297 :  : name_index=298 signature_index=120
+ - 298 :  : 'clear'
+ - 299 :  : 'files'
+ - 300 :  : 'iter'
+ - 301 :  : 'Ljava/util/Iterator;'
+ - 302 :  : 'dir'
+ - 303 :  : 'dir2'
+ - 304 :  : 'build'
+ - 305 :  : 'newFile'
+ - 306 :  : 'build2'
+ - 307 :  : 'module'
+ - 308 :  : 'Lautocode/build/BuildTxt2;'
+ - 309 :  : 'StringSplit'
+ - 310 :  : '(Ljava/lang/String;)Ljava/util/Map;'
+ - 311 :  : 'java/util/HashMap'
+ - 312 :  : 'java/util/HashMap'
+ - 313 :  : klass_index=311 name_and_type_index=289
+ - 314 :  : klass_index=1 name_and_type_index=315
+ - 315 :  : name_index=316 signature_index=317
+ - 316 :  : 'split'
+ - 317 :  : '(Ljava/lang/String;)[Ljava/lang/String;'
+ - 318 :  : "0" {0xbc2f0fb8}
+ - 319 :  : '0'
+ - 320 :  : klass_index=95 name_and_type_index=321
+ - 321 :  : name_index=322 signature_index=237
+ - 322 :  : 'valueOf'
+ - 323 :  : klass_index=324 name_and_type_index=326
+ - 324 :  : 'java/util/Map'
+ - 325 :  : 'java/util/Map'
+ - 326 :  : name_index=327 signature_index=328
+ - 327 :  : 'put'
+ - 328 :  : '(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;'
+ - 329 :  : "1" {0xbc4058f8}
+ - 330 :  : '1'
+ - 331 :  : "2" {0xbc8a3780}
+ - 332 :  : '2'
+ - 333 :  : 'biList'
+ - 334 :  : 'str'
+ - 335 :  : 'b'
+ - 336 :  : 'doFor'
+ - 337 :  : klass_index=1 name_and_type_index=338
+ - 338 :  : name_index=20 signature_index=19
+ - 339 :  : klass_index=1 name_and_type_index=340
+ - 340 :  : name_index=341 signature_index=120
+ - 341 :  : 'getType'
+ - 342 :  : klass_index=1 name_and_type_index=343
+ - 343 :  : name_index=38 signature_index=39
+ - 344 :  : "[" {0xbc54eca8}
+ - 345 :  : '['
+ - 346 :  : klass_index=132 name_and_type_index=347
+ - 347 :  : name_index=139 signature_index=348
+ - 348 :  : '(I)Ljava/lang/StringBuffer;'
+ - 349 :  : "][" {0xbc8f5290}
+ - 350 :  : ']['
+ - 351 :  : klass_index=1 name_and_type_index=352
+ - 352 :  : name_index=21 signature_index=19
+ - 353 :  : "]" {0xbc480ce0}
+ - 354 :  : ']'
+ - 355 :  : klass_index=1 name_and_type_index=356
+ - 356 :  : name_index=46 signature_index=39
+ - 357 :  : klass_index=62 name_and_type_index=358
+ - 358 :  : name_index=359 signature_index=360
+ - 359 :  : 'getFilePointer'
+ - 360 :  : '()J'
+ - 361 :  : klass_index=1 name_and_type_index=362
+ - 362 :  : name_index=31 signature_index=32
+ - 363 :  : klass_index=1 name_and_type_index=364
+ - 364 :  : name_index=365 signature_index=366
+ - 365 :  : 'mkpair'
+ - 366 :  : '(JLjava/lang/String;)Ljava/util/Map;'
+ - 367 :  : klass_index=1 name_and_type_index=368
+ - 368 :  : name_index=35 signature_index=25
+ - 369 :  : klass_index=324 name_and_type_index=370
+ - 370 :  : name_index=371 signature_index=188
+ - 371 :  : 'size'
+ - 372 :  : klass_index=1 name_and_type_index=373
+ - 373 :  : name_index=374 signature_index=375
+ - 374 :  : 'mapToString'
+ - 375 :  : '(Ljava/util/Map;)V'
+ - 376 :  : klass_index=1 name_and_type_index=377
+ - 377 :  : name_index=378 signature_index=120
+ - 378 :  : 'outtemp'
+ - 379 :  : 'key1'
+ - 380 :  : 'forkey'
+ - 381 :  : 'forvalue'
+ - 382 :  : 'tagChange'
+ - 383 :  : '(I[Ljava/lang/String;Ljava/util/List;)Ljava/util/List;'
+ - 384 :  : klass_index=1 name_and_type_index=385
+ - 385 :  : name_index=45 signature_index=15
+ - 386 :  : klass_index=324 name_and_type_index=387
+ - 387 :  : name_index=388 signature_index=389
+ - 388 :  : 'get'
+ - 389 :  : '(Ljava/lang/Object;)Ljava/lang/Object;'
+ - 390 :  : klass_index=1 name_and_type_index=192
+ - 391 :  : klass_index=245 name_and_type_index=392
+ - 392 :  : name_index=388 signature_index=393
+ - 393 :  : '(I)Ljava/lang/Object;'
+ - 394 :  : klass_index=1 name_and_type_index=395
+ - 395 :  : name_index=7 signature_index=6
+ - 396 :  : klass_index=1 name_and_type_index=397
+ - 397 :  : name_index=398 signature_index=399
+ - 398 :  : 'replace'
+ - 399 :  : '(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;'
+ - 400 :  : klass_index=1 name_and_type_index=401
+ - 401 :  : name_index=402 signature_index=194
+ - 402 :  : 'equalsFor'
+ - 403 :  : klass_index=1 name_and_type_index=404
+ - 404 :  : name_index=336 signature_index=61
+ - 405 :  : "10" {0xbc8a36f0}
+ - 406 :  : '10'
+ - 407 :  : "20" {0xbc8a3818}
+ - 408 :  : '20'
+ - 409 :  : klass_index=410 name_and_type_index=412
+ - 410 :  : 'autocode/build/tag'
+ - 411 :  : 'autocode/build/tag'
+ - 412 :  : name_index=413 signature_index=414
+ - 413 :  : 'propertyClassCount'
+ - 414 :  : '()[I'
+ - 415 :  : klass_index=1 name_and_type_index=416
+ - 416 :  : name_index=36 signature_index=19
+ - 417 :  : klass_index=1 name_and_type_index=418
+ - 418 :  : name_index=26 signature_index=19
+ - 419 :  : klass_index=420 name_and_type_index=422
+ - 420 :  : 'java/lang/Integer'
+ - 421 :  : 'java/lang/Integer'
+ - 422 :  : name_index=145 signature_index=237
+ - 423 :  : 'java/util/ArrayList'
+ - 424 :  : 'java/util/ArrayList'
+ - 425 :  : klass_index=423 name_and_type_index=289
+ - 426 :  : klass_index=1 name_and_type_index=427
+ - 427 :  : name_index=14 signature_index=15
+ - 428 :  : klass_index=245 name_and_type_index=429
+ - 429 :  : name_index=430 signature_index=194
+ - 430 :  : 'add'
+ - 431 :  : klass_index=245 name_and_type_index=370
+ - 432 :  : klass_index=1 name_and_type_index=433
+ - 433 :  : name_index=37 signature_index=19
+ - 434 :  : 'maplist'
+ - 435 :  : 'j'
+ - 436 :  : 'list'
+ - 437 :  : 'change'
+ - 438 :  : 'changed'
+ - 439 :  : 'strfor'
+ - 440 :  : 'strmap'
+ - 441 :  : 'count'
+ - 442 :  : 'list3'
+ - 443 :  : 'u'
+ - 444 :  : klass_index=1 name_and_type_index=445
+ - 445 :  : name_index=309 signature_index=310
+ - 446 :  : klass_index=420 name_and_type_index=447
+ - 447 :  : name_index=448 signature_index=261
+ - 448 :  : 'parseInt'
+ - 449 :  : '[Ljava/lang/String;'
+ - 450 :  : klass_index=1 name_and_type_index=451
+ - 451 :  : name_index=382 signature_index=383
+ - 452 :  : klass_index=410 name_and_type_index=453
+ - 453 :  : name_index=454 signature_index=188
+ - 454 :  : 'classCount'
+ - 455 :  : 'list4'
+ - 456 :  : 'map'
+ - 457 :  : 'a'
+ - 458 :  : klass_index=1 name_and_type_index=459
+ - 459 :  : name_index=38 signature_index=460
+ - 460 :  : '(Ljava/lang/Object;)V'
+ - 461 :  : 'log'
+ - 462 :  : 'findStart'
+ - 463 :  : '(JLjava/lang/String;)V'
+ - 464 :  : klass_index=1 name_and_type_index=465
+ - 465 :  : name_index=33 signature_index=19
+ - 466 :  : klass_index=467 name_and_type_index=149
+ - 467 :  : 'java/io/UnsupportedEncodingException'
+ - 468 :  : 'java/io/UnsupportedEncodingException'
+ - 469 :  : 'begin'
+ - 470 :  : 'target'
+ - 471 :  : 'in2'
+ - 472 :  : 'Ljava/io/UnsupportedEncodingException;'
+ - 473 :  : "FOR.CLASS.PROPERTY" {0xbc8a3728}
+ - 474 :  : 'FOR.CLASS.PROPERTY'
+ - 475 :  : "ENDFOR.CLASS.PROPERTY" {0xbc8a37b8}
+ - 476 :  : 'ENDFOR.CLASS.PROPERTY'
+ - 477 :  : "FOR.CLASS" {0xbc8a3660}
+ - 478 :  : 'FOR.CLASS'
+ - 479 :  : "ENDFOR.CLASS" {0xbc8a36a8}
+ - 480 :  : 'ENDFOR.CLASS'
+ - 481 :  : klass_index=1 name_and_type_index=482
+ - 482 :  : name_index=462 signature_index=463
+ - 483 :  : klass_index=95 name_and_type_index=484
+ - 484 :  : name_index=322 signature_index=485
+ - 485 :  : '(J)Ljava/lang/String;'
+ - 486 :  : klass_index=62 name_and_type_index=487
+ - 487 :  : name_index=187 signature_index=360
+ - 488 :  : 'pointer'
+ - 489 :  : 'tempPointer'
+ - 490 :  : 'target2'
+ - 491 :  : 'map2'
+ - 492 :  : "][0]" {0xbc8f52c8}
+ - 493 :  : '][0]'
+ - 494 :  : 71582
+ - 495 :  : 'Ljava/lang/Object;'
+ - 496 :  : '(I)V'
+ - 497 :  : klass_index=1 name_and_type_index=498
+ - 498 :  : name_index=27 signature_index=28
+ - 499 :  : klass_index=1 name_and_type_index=500
+ - 500 :  : name_index=22 signature_index=19
+ - 501 :  : klass_index=1 name_and_type_index=502
+ - 502 :  : name_index=503 signature_index=504
+ - 503 :  : 'tempSize'
+ - 504 :  : '(I)I'
+ - 505 :  : klass_index=78 name_and_type_index=506
+ - 506 :  : name_index=29 signature_index=460
+ - 507 :  : klass_index=1 name_and_type_index=508
+ - 508 :  : name_index=509 signature_index=194
+ - 509 :  : 'equalsMap'
+ - 510 :  : klass_index=1 name_and_type_index=511
+ - 511 :  : name_index=512 signature_index=268
+ - 512 :  : 'printready'
+ - 513 :  : klass_index=1 name_and_type_index=514
+ - 514 :  : name_index=24 signature_index=25
+ - 515 :  : klass_index=1 name_and_type_index=516
+ - 516 :  : name_index=29 signature_index=30
+ - 517 :  : klass_index=1 name_and_type_index=518
+ - 518 :  : name_index=23 signature_index=19
+ - 519 :  : klass_index=1 name_and_type_index=520
+ - 520 :  : name_index=42 signature_index=43
+ - 521 :  : klass_index=1 name_and_type_index=522
+ - 522 :  : name_index=41 signature_index=19
+ - 523 :  : klass_index=324 name_and_type_index=524
+ - 524 :  : name_index=525 signature_index=389
+ - 525 :  : 'remove'
+ - 526 :  : 'propetrycount'
+ - 527 :  : 'l'
+ - 528 :  : 'c'
+ - 529 :  : klass_index=1 name_and_type_index=530
+ - 530 :  : name_index=10 signature_index=496
+ - 531 :  : klass_index=3 name_and_type_index=289
+ - 532 :  : '[[Ljava/lang/String;'
+ - 533 :  : klass_index=1 name_and_type_index=534
+ - 534 :  : name_index=40 signature_index=19
+ - 535 :  : '[[I'
+ - 536 :  : klass_index=410 name_and_type_index=537
+ - 537 :  : name_index=456 signature_index=39
+ - 538 :  : klass_index=410 name_and_type_index=539
+ - 539 :  : name_index=540 signature_index=15
+ - 540 :  : 'key'
+ - 541 :  : 'exe'
+ - 542 :  : klass_index=1 name_and_type_index=289
+ - 543 :  : klass_index=1 name_and_type_index=544
+ - 544 :  : name_index=196 signature_index=61
+ - 545 :  : "build success" {0xbc8f5300}
+ - 546 :  : 'build success'
+ - 547 :  : klass_index=95 name_and_type_index=548
+ - 548 :  : name_index=322 signature_index=549
+ - 549 :  : '(Ljava/lang/Object;)Ljava/lang/String;'
+ - 550 :  : "$" {0xbc8cd908}
+ - 551 :  : '$'
+ - 552 :  : 'olds'
+ - 553 :  : 'news'
+ - 554 :  : 'afterRE'
+ - 555 :  : "\$" {0xbc8cd940}
+ - 556 :  : '\$'
+ - 557 :  : klass_index=95 name_and_type_index=315
+ - 558 :  : 'st'
+ - 559 :  : klass_index=324 name_and_type_index=297
+ - 560 :  : 'other'
+ - 561 :  : klass_index=1 name_and_type_index=562
+ - 562 :  : name_index=563 signature_index=564
+ - 563 :  : 'listFile'
+ - 564 :  : '(Ljava/io/File;)V'
+ - 565 :  : 'address'
+ - 566 :  : klass_index=64 name_and_type_index=567
+ - 567 :  : name_index=568 signature_index=268
+ - 568 :  : 'isFile'
+ - 569 :  : klass_index=64 name_and_type_index=570
+ - 570 :  : name_index=571 signature_index=124
+ - 571 :  : 'getAbsolutePath'
+ - 572 :  : klass_index=64 name_and_type_index=573
+ - 573 :  : name_index=574 signature_index=575
+ - 574 :  : 'listFiles'
+ - 575 :  : '()[Ljava/io/File;'
+ - 576 :  : '[Ljava/io/File;'
+ - 577 :  : 'SourceFile'
+ - 578 :  : 'BuildTxt.java'
+ - 579 :  : '([BLjava/lang/String;)V'
+ - 580 :  : name_index=68 signature_index=579
+ - 581 :  : klass_index=95 name_and_type_index=580
+ - 582 :  : "$" {0xbc8cd908}
+ - 583 :  : "\$" {0xbc8cd940}
+ - 584 :  : "iso-8859-1" {0xbc115768}
+ - 585 :  : 'iso-8859-1'
+ - 586 :  : "GBK" {0xbc155af8}
+ - 587 :  : "#FILE" {0xbc8cd8c8}
+ - 588 :  : "#LEVEL" {0xbc8cd408}
+ - 589 :  : "" {0xbc1017a8}
+ - 590 :  : "model:" {0xbc8cd3c8}
+ - 591 :  : "level:" {0xbc8cd888}
+ - 592 :  : "/" {0xbc2a7330}
+ - 593 :  : "CLASS" {0xbc8cd978}
+ - 594 :  : "0" {0xbc2f0fb8}
+ - 595 :  : "1" {0xbc4058f8}
+ - 596 :  : "2" {0xbc8a3780}
+ - 597 :  : "10" {0xbc8a36f0}
+ - 598 :  : "20" {0xbc8a3818}
+
+R11=0x000000006de63f80 is an unknown value
+R12=0x0000000000000069 is an unknown value
+R13=0x00000000004a98c8 is an unknown value
+R14=0x000000006d890000 is an unknown value
+R15=0x0000000000000000 is an unknown value
+
+
+Stack: [0x00000000062d0000,0x00000000063d0000],  sp=0x00000000063cf260,  free space=1020k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x20ccf7]
+
+VM_Operation (0x0000000006e0f750): GetOrSetLocal, mode: safepoint, requested by thread 0x0000000006637800
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x0000000006665800 JavaThread "Low Memory Detector" daemon [_thread_blocked, id=4996, stack(0x00000000073f0000,0x00000000074f0000)]
+  0x000000000664b000 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=6232, stack(0x00000000072f0000,0x00000000073f0000)]
+  0x0000000006654800 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=1116, stack(0x00000000071f0000,0x00000000072f0000)]
+  0x000000000663a800 JavaThread "JDWP Command Reader" daemon [_thread_in_native, id=3524, stack(0x00000000070f0000,0x00000000071f0000)]
+  0x0000000006639800 JavaThread "JDWP Event Helper Thread" daemon [_thread_blocked, id=3944, stack(0x0000000006ee0000,0x0000000006fe0000)]
+  0x0000000006637800 JavaThread "JDWP Transport Listener: dt_socket" daemon [_thread_blocked, id=6280, stack(0x0000000006d10000,0x0000000006e10000)]
+  0x00000000065e1000 JavaThread "Attach Listener" daemon [_thread_blocked, id=6576, stack(0x00000000068d0000,0x00000000069d0000)]
+  0x00000000065df800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=3924, stack(0x00000000067d0000,0x00000000068d0000)]
+  0x000000000052c000 JavaThread "Finalizer" daemon [_thread_blocked, id=5164, stack(0x00000000064d0000,0x00000000065d0000)]
+  0x0000000000525000 JavaThread "Reference Handler" daemon [_thread_blocked, id=6684, stack(0x00000000063d0000,0x00000000064d0000)]
+  0x000000000060c000 JavaThread "main" [_thread_blocked, id=5916, stack(0x0000000002500000,0x0000000002600000)]
+
+Other Threads:
+=>0x000000000051d800 VMThread [stack: 0x00000000062d0000,0x00000000063d0000] [id=4560]
+  0x0000000006680000 WatcherThread [stack: 0x00000000074f0000,0x00000000075f0000] [id=6580]
+
+VM state:at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x0000000000609f60] Threads_lock - owner thread: 0x000000000051d800
+
+Heap
+ PSYoungGen      total 25152K, used 5642K [0x00000000eb0b0000, 0x00000000ed330000, 0x0000000100000000)
+  eden space 22592K, 13% used [0x00000000eb0b0000,0x00000000eb3bd5e8,0x00000000ec6c0000)
+  from space 2560K, 98% used [0x00000000ed0b0000,0x00000000ed3252c8,0x00000000ed330000)
+  to   space 2624K, 0% used [0x00000000ece10000,0x00000000ece10000,0x00000000ed0a0000)
+ PSOldGen        total 99904K, used 64558K [0x00000000c1200000, 0x00000000c7390000, 0x00000000eb0b0000)
+  object space 99904K, 64% used [0x00000000c1200000,0x00000000c510bab0,0x00000000c7390000)
+ PSPermGen       total 21248K, used 9172K [0x00000000bc000000, 0x00000000bd4c0000, 0x00000000c1200000)
+  object space 21248K, 43% used [0x00000000bc000000,0x00000000bc8f5350,0x00000000bd4c0000)
+
+Code Cache  [0x0000000002600000, 0x0000000002870000, 0x0000000005600000)
+ total_blobs=264 nmethods=38 adapters=188 free_code_cache=49815168 largest_free_block=10176
+
+Dynamic libraries:
+0x0000000000400000 - 0x000000000042e000 	C:\Java\jdk1.6.0_29\bin\javaw.exe
+0x00000000779d0000 - 0x0000000077b79000 	C:\Windows\SYSTEM32\ntdll.dll
+0x0000000077770000 - 0x000000007788f000 	C:\Windows\system32\kernel32.dll
+0x000007fefd7a0000 - 0x000007fefd80b000 	C:\Windows\system32\KERNELBASE.dll
+0x000007feffb90000 - 0x000007feffc6b000 	C:\Windows\system32\ADVAPI32.dll
+0x000007feff1e0000 - 0x000007feff27f000 	C:\Windows\system32\msvcrt.dll
+0x000007feff7e0000 - 0x000007feff7ff000 	C:\Windows\SYSTEM32\sechost.dll
+0x000007feff0b0000 - 0x000007feff1dd000 	C:\Windows\system32\RPCRT4.dll
+0x0000000077670000 - 0x000000007776a000 	C:\Windows\system32\USER32.dll
+0x000007feffc70000 - 0x000007feffcd7000 	C:\Windows\system32\GDI32.dll
+0x000007feff280000 - 0x000007feff28e000 	C:\Windows\system32\LPK.dll
+0x000007fefefe0000 - 0x000007feff0a9000 	C:\Windows\system32\USP10.dll
+0x000007feff920000 - 0x000007feff94e000 	C:\Windows\system32\IMM32.DLL
+0x000007fefedb0000 - 0x000007fefeeb9000 	C:\Windows\system32\MSCTF.dll
+0x000000006d890000 - 0x000000006e048000 	C:\Java\jdk1.6.0_29\jre\bin\server\jvm.dll
+0x000007fefd910000 - 0x000007fefd94b000 	C:\Windows\system32\WINMM.dll
+0x000000006d800000 - 0x000000006d80e000 	C:\Java\jdk1.6.0_29\jre\bin\verify.dll
+0x000000006d450000 - 0x000000006d477000 	C:\Java\jdk1.6.0_29\jre\bin\java.dll
+0x000000006d4c0000 - 0x000000006d4f4000 	C:\Java\jdk1.6.0_29\jre\bin\jdwp.dll
+0x000000006d6d0000 - 0x000000006d6d8000 	C:\Java\jdk1.6.0_29\jre\bin\npt.dll
+0x000000006d850000 - 0x000000006d862000 	C:\Java\jdk1.6.0_29\jre\bin\zip.dll
+0x000000006d310000 - 0x000000006d319000 	C:\Java\jdk1.6.0_29\jre\bin\dt_socket.dll
+0x000007feff4f0000 - 0x000007feff53d000 	C:\Windows\system32\WS2_32.dll
+0x000007feff800000 - 0x000007feff808000 	C:\Windows\system32\NSI.dll
+0x000007fefb820000 - 0x000007fefb835000 	C:\Windows\system32\NLAapi.dll
+0x000007fef7020000 - 0x000007fef7035000 	C:\Windows\system32\napinsp.dll
+0x000007fef6ff0000 - 0x000007fef7009000 	C:\Windows\system32\pnrpnsp.dll
+0x000007fefcf60000 - 0x000007fefcfb5000 	C:\Windows\System32\mswsock.dll
+0x000007fefcde0000 - 0x000007fefce3b000 	C:\Windows\system32\DNSAPI.dll
+0x000007fef6fe0000 - 0x000007fef6feb000 	C:\Windows\System32\winrnr.dll
+0x000007fef6fd0000 - 0x000007fef6fe0000 	C:\Windows\system32\wshbth.dll
+0x000007fefacb0000 - 0x000007fefacd7000 	C:\Windows\system32\IPHLPAPI.DLL
+0x000007fefaca0000 - 0x000007fefacab000 	C:\Windows\system32\WINNSI.DLL
+0x000007fefaa10000 - 0x000007fefaa63000 	C:\Windows\System32\fwpuclnt.dll
+0x000007fef9dc0000 - 0x000007fef9dc8000 	C:\Windows\system32\rasadhlp.dll
+0x000007fefc920000 - 0x000007fefc927000 	C:\Windows\System32\wshtcpip.dll
+0x000000006d6a0000 - 0x000000006d6b7000 	C:\Java\jdk1.6.0_29\jre\bin\net.dll
+0x000007fefcf50000 - 0x000007fefcf57000 	C:\Windows\System32\wship6.dll
+0x0000000077ba0000 - 0x0000000077ba7000 	C:\Windows\system32\PSAPI.DLL
+
+VM Arguments:
+jvm_args: -agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:50793 -Dfile.encoding=GBK 
+java_command: autocode.build.run
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=C:\Java\jdk1.6.0_29
+CLASSPATH=.;C:\Java\jdk1.6.0_29\lib;C:\Java\jdk1.6.0_29\lib\tools.jar
+PATH=E:\oracle\product\10.2.0\client_1\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Java\jdk1.6.0_29\bin;C:\Java\jdk1.6.0_29\jre\bin;D:\apache-maven-3.0.4\bin;C:\Program Files\TortoiseSVN\bin;D:\apache-cxf-2.6.1\bin;D:\apache-ant-1.8.1\bin
+USERNAME=Travelsky
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 37 Stepping 5, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 7 , 64 bit Build 7601 Service Pack 1
+
+CPU:total 4 (2 cores per cpu, 2 threads per core) family 6 model 37 stepping 5, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, ht
+
+Memory: 4k page, physical 4118360k(1492068k free), swap 8234860k(4849396k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (20.4-b02) for windows-amd64 JRE (1.6.0_29-b11), built on Oct  3 2011 01:06:42 by "java_re" with MS VC++ 8.0 (VS2005)
+
+time: Sat Oct 11 17:27:37 2014
+elapsed time: 2269 seconds
+

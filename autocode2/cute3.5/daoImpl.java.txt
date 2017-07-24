@@ -1,0 +1,117 @@
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//说明。。。
+//$..$标记需要解析的标签，如$getJavaPah()$表示根据包名计算的java文件保存路径。
+//内部变量定义区域
+//根据#FILE得知物理文件保存路径、名称
+//#FILE=$getJspPah()$/$getClassInstance()$Add.jsp
+#FILE=$getJavaPah()$/dao/impl/$getClass()$DaoImpl.java
+//根据#LEVEL得知文件级别：分模块级别，单个类[数据表]级别
+#LEVEL=CLASS
+//#LEVEL=MODULE
+//以下为输出的物理文件文件内容
+//**DAOImpl.java样例
+package $getPackage()$.dao.impl;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.ArrayList;
+
+import $getPackage()$.dao.$getClass()$Dao;
+import $getPackage()$.hibernate.BaseDaoSupport;
+import $getPackage()$.pojo.$getClass()$;
+//import $getPackage()$.pojo.User;
+
+public class $getClass()$DaoImpl extends BaseDaoSupport implements $getClass()$Dao {
+
+	//TODO
+	public List getselectContent(List condition){
+		return new ArrayList();
+	}
+	
+	//存在 返回true
+	public boolean isExistById(String $getClassId()$){
+	
+		$getClass()$ $getClassInstance()$ = this.get$getClass()$($getClassId()$);	
+		if($getClassInstance()$==null||$getClassInstance()$.get$getClassIdIC()$()==null) return false;
+		else 
+			 return true;
+		
+	}
+
+
+	public $getClassIdType()$ add$getClass()$($getClass()$ $getClassInstance()$) {
+		return ($getClassIdType()$) getHibernateTemplate().save($getClassInstance()$);
+	}
+
+	
+	public void update$getClass()$($getClass()$ $getClassInstance()$) {
+	
+		$getClass()$ $getClassInstance()$update = this.get$getClass()$($getClassInstance()$.get$getClassIdIC()$());
+		if ($getClassInstance()$update.get$getClassIdIC()$()==null) return;
+		$FOR.CLASS.PROPERTY$
+		if($getClassInstance()$.get$getClassPropertyNameIC()$()!=null)
+			$getClassInstance()$update.set$getClassPropertyNameIC()$($getClassInstance()$.get$getClassPropertyNameIC()$());
+		$ENDFOR.CLASS.PROPERTY$
+		getHibernateTemplate().update($getClassInstance()$update);
+	}
+	
+	
+	public $getClass()$ get$getClass()$($getClassIdType()$ $getClassId()$) {
+		return ($getClass()$)getHibernateTemplate().get($getClass()$.class, $getClassId()$);
+	}
+	
+	/**
+	 * 获得所有用户
+	 */
+	public List getAll$getClass()$(){
+		return getHibernateTemplate().find("from $getClass()$");
+	}
+
+	//多个参数查询
+  	public List getListByCondition(List condition,int startRows, int pageSize){
+		
+		if(condition==null||condition.size()==0) return getAll$getClass()$( startRows, pageSize);
+		return this.findByHqlByCondition(condition, "$getClass()$", startRows, pageSize);
+	
+	} 	
+	public Long getRowsByCondition(List condition){
+		if(condition==null||condition.size()==0) return getAll$getClass()$Rows();
+		return this.getAllRowsByCondition(condition, "$getClass()$");
+	}
+	
+ 	public List findByHql(int startRows, int pageSize){
+		pageCallback.setStartRow(startRows);
+		pageCallback.setPageSize(pageSize);
+		pageCallback.setHql("from $getClass()$");
+		return getHibernateTemplate().executeFind(pageCallback);
+	
+	} 
+
+	/**
+	 * 获得所有用户
+	 * hibernate分页查询
+	 */
+	public List getAll$getClass()$(int startRows, int pageSize){
+		pageCallback.setStartRow(startRows);
+		pageCallback.setPageSize(pageSize);
+		pageCallback.setHql("from $getClass()$");
+		return getHibernateTemplate().executeFind(pageCallback);
+	}
+	
+	/**
+	 * 获得用户总记录数
+	 */
+	public Long getAll$getClass()$Rows(){
+		countCallback.setHql("select count(*) from $getClass()$");
+		return (Long)getHibernateTemplate().execute(countCallback);
+	}
+	
+   //删除
+	public void delete$getClass()$($getClass()$ $getClassInstance()$) {
+	    if ($getClassInstance()$.get$getClassIdIC()$()==null) return;
+		
+		getHibernateTemplate().delete($getClassInstance()$);
+	}
+}

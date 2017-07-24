@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+	<module name="uniorder" package="com.travelsky.persistence.uniorder" datasource="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=172.25.5.217)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=developmu)(SERVER=DEDICATED)))" resource="RES_SYS_DEMO"  username="uniorder" password="uniorder">
+		<class name="ExchangeJFOrderInfo" instance="ExchangeJFOrderInfo"  table="EXCHANGE_JF_ORDER_INFO" > 
+		</class>
+	</module>
+</root>

@@ -1,0 +1,236 @@
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//说明。。。
+//$..$标记需要解析的标签，如$getJavaPah()$表示根据包名计算的java文件保存路径。
+//内部变量定义区域
+//根据#FILE得知物理文件保存路径、名称
+//#FILE=$getJspPah()$/$getClassInstance()$Add.jsp
+//#FILE=$getJavaPah()$/dao/$getClass()$DAO.java
+#FILE=$getJavaPah()$/util/PageNoCount.java
+//根据#LEVEL得知文件级别：分模块级别，单个类[数据表]级别
+//#LEVEL=CLASS
+#LEVEL=MODULE
+//以下为输出的物理文件文件内容
+//**Action.java样例
+package $getPackage()$.util;
+
+import java.io.Serializable;
+import java.util.List;
+
+/*
+ * 分页对象. 不包含记录总数
+ * @author 张炳祥
+ */
+@SuppressWarnings("serial")
+public class PageNoCount implements Serializable {
+    /**
+     * 页缺省大小
+     */
+    private static int DEFAULT_PAGE_SIZE = 15;
+
+    /**
+     * 每页的记录数,缺省为20
+     */
+    private int pageSize = DEFAULT_PAGE_SIZE;
+
+    /**
+     * 当前页第一条数据在List中的位置,从0开始
+     */
+    private long start;
+
+    /**
+     * 当前页中存放的记录,类型一般为List
+     */
+    private Object data;
+
+    /**
+     * 当前页
+     */
+    private long currentPageNo;
+
+    /**
+     * 默认构造方法. 
+     * @param start  本页数据在数据库中的起始位置
+     * @param totalSize 数据库中总记录条数
+     * @param pageSize 本页容量
+     * @param data 本页包含的数据
+     */
+    public PageNoCount(long start, int pageSize, Object data) {
+        this.pageSize = pageSize;
+        this.start = start;
+        this.data = data;
+    }
+
+    /**
+     * 取每页数据容量.
+     * @return int
+     */
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    /**
+     * <p>设置页大小。</p>
+     * @param pageSize
+     */
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    /**
+     * 取当前页中的记录.
+     * @return List<Object>
+     */
+    public Object getResult() {
+        return data;
+    }
+
+    /**
+     * <p>设置数据记录。</p>
+     * @param obj
+     */
+    public void setResult(Object obj) {
+        data = obj;
+    }
+
+    /**
+     * 取该页当前页码,页码从1开始.
+     * @return long
+     */
+    public long getCurrentPageNo() {
+        this.currentPageNo = start / pageSize + 1;
+        return this.currentPageNo;
+    }
+
+    /**
+     * <p>设置当前页码。</p>
+     * @param pageNo
+     */
+    public void setCurrentPageNo(int pageNo) {
+        this.currentPageNo = pageNo;
+    }
+
+    /**
+     * 该页是否有上一页.
+     * @return boolean
+     */
+    public boolean hasPreviousPage() {
+        return this.getCurrentPageNo() > 1;
+    }
+
+    /**
+     * 获取任一页第一条数据在数据集的位置，每页条数使用默认值.
+     * @param pageNo 
+     * @return int
+     * @see #getStartOfPage(int,int)
+     */
+    protected static int getStartOfPage(int pageNo) {
+        return getStartOfPage(pageNo, DEFAULT_PAGE_SIZE);
+    }
+
+    /**
+     * 获取任一页第一条数据在数据集的位置. 
+     * @param pageNo 从1开始的页号
+     * @param pageSize 每页记录条数
+     * @return 该页第一条数据
+     */
+    public static int getStartOfPage(int pageNo, int pageSize) {
+        return (pageNo - 1) * pageSize;
+    }
+
+    /**
+     * 分页栏函数 必需被包含在某个Form之中
+     * @return String 分栏字符串
+     * 分页按钮、选择行数、页数都可提交form
+     */
+    @SuppressWarnings("unchecked")
+    public String getFooter() {
+        StringBuffer strBuf = new StringBuffer("");
+        int pageNo = (int) getCurrentPageNo();//取该页当前页码,页码从1开始. 
+        int prev = pageNo - 1;
+        int next = pageNo + 1;
+        //按钮
+        if (pageNo > 1) {
+            strBuf.append("<INPUT class=button type=submit value=首页 name=firs onclick='this.form.pageNo.value=1'>&nbsp;");
+        }
+        else {
+            strBuf.append("<INPUT class=button type=submit value=首页 name=firs disabled>&nbsp;");
+        }
+        if (pageNo > 1) {
+            strBuf.append("<INPUT class=button type=submit value=上页 name=prev onclick='this.form.pageNo.value=" + prev + 
+
+"'>&nbsp;");
+        }
+        else {
+            strBuf.append("<INPUT class=button type=submit value=上页 name=prev disabled>&nbsp;");
+        }
+        if (((List)data).size()!=0&&pageSize==((List)data).size()) {
+            strBuf.append("<INPUT class=button type=submit value=下页 name=next onclick='this.form.pageNo.value=" + next + ";' >&nbsp;");
+        }
+        else {
+            strBuf.append("<INPUT class=button type=submit value=下页 name=next disabled>&nbsp;");
+        }
+        strBuf.append("每页<SELECT size=1 class='select' name=pageSize").append(" onchange='this.form.pageNo.value=1;this.form.pageSize.value=this.value;this.form.submit();'>");
+
+        if (pageSize == 3) {
+            strBuf.append("<OPTION value=3 selected>3</OPTION>");
+        }
+        else {
+            strBuf.append("<OPTION value=3>3</OPTION>");
+        }
+
+        if (pageSize == 10) {
+            strBuf.append("<OPTION value=10 selected>10</OPTION>");
+        }
+        else {
+            strBuf.append("<OPTION value=10>10</OPTION>");
+        }
+
+        if (pageSize == 15) {
+            strBuf.append("<OPTION value=15 selected>15</OPTION>");
+        }
+        else {
+            strBuf.append("<OPTION value=15>15</OPTION>");
+        }
+
+        if (pageSize == 20) {
+            strBuf.append("<OPTION value=20 selected>20</OPTION>");
+        }
+        else {
+            strBuf.append("<OPTION value=20>20</OPTION>");
+        }
+        if (pageSize == 30) {
+            strBuf.append("<OPTION value=30 selected>30</OPTION>");
+        }
+        else {
+            strBuf.append("<OPTION value=30>30</OPTION>");
+        }
+
+        if (pageSize == 50) {
+            strBuf.append("<OPTION value=50 selected>50</OPTION>");
+        }
+        else {
+            strBuf.append("<OPTION value=50>50</OPTION>");
+        }
+
+        if (pageSize == 100) {
+            strBuf.append("<OPTION value=100 selected>100</OPTION>");
+        }
+        else {
+            strBuf.append("<OPTION value=100>100</OPTION>");
+        }
+        strBuf.append("</SELECT>");
+        strBuf.append("条 ");
+
+        //
+        strBuf.append("<INPUT class=button type=hidden  value=" + pageNo + " name=\"pageNo\" > ");
+        strBuf.append("<INPUT class=button type=hidden  value=" + pageSize + " name=\"pageSize\"> ");
+        return strBuf.toString();
+    }
+
+    public String toString() {
+        return getFooter();
+    }
+}
+

@@ -1,0 +1,73 @@
+#FILE=$getRootPah()$/web/WEB-INF/applicationContext-persistence.xml
+#LEVEL=MODULE
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd"
+    default-autowire="byName">
+
+	<!-- JDBC Properties -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:$getPackageDir()$/resource/jdbc.properties" />
+	</bean>
+
+	<!-- DataSource -->
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>java:comp/env/jdbc/DBPool</value>
+		</property>
+	</bean>
+
+	<!-- Hibernate SessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 
+			<property name="configLocation">   
+			<value>/WEB-INF/hibernate.cfg.xml</value>   
+			</property>
+		-->
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:/$getPackageDir()$/hbm</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					${hibernate.dialect}
+				</prop>
+				<prop key="hibernate.show_sql">
+					${hibernate.show_sql}
+				</prop>
+				<prop key="hibernate.format_sql">
+					${hibernate.format_sql}
+				</prop>
+				<prop key="hibernate.cache.provider_class">
+					${hibernate.cache.provider_class}
+				</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- Transaction manager for a single Hibernate SessionFactory (alternative to JTA) -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- Transaction Annotation -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+
+	<!-- Persistence Dao -->
+	$FOR.CLASS$
+	<bean id="$getClassInstance()$Dao" class="$getPackage()$.dao.impl.$getClass()$DaoImpl"></bean>
+	$ENDFOR.CLASS$
+
+		<!-- Hibernate extend or implement -->
+	<bean id="pageCallback" class="$getPackage()$.hibernate.PageCallback"></bean>
+	<bean id="countCallback" class="$getPackage()$.hibernate.CountCallback"></bean>
+
+</beans>

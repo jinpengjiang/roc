@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="com.genuitec.eclipse.j2eedt.core.J2EE14_CONTAINER"/>
+	<classpathentry kind="lib" path="D:/workspace/autocode2/web/WEB-INF/lib/oracle-jdbc-1.4-9.2.0.6.jar"/>
+	<classpathentry kind="lib" path="D:/workspace/autocode2/web/WEB-INF/lib/cuteBaseApp.jar"/>
+	<classpathentry kind="lib" path="D:/workspace/autocode2/web/WEB-INF/lib/open.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/crimson.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/cuteBaseApp.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/open.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/oracle-jdbc-1.4-9.2.0.6.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="output" path="web/WEB-INF/classes"/>
+</classpath>

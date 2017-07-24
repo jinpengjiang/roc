@@ -1,0 +1,110 @@
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//说明。。。
+//$..$标记需要解析的标签，如$getJavaPah()$表示根据包名计算的java文件保存路径。
+//内部变量定义区域
+//根据#FILE得知物理文件保存路径、名称
+#FILE=$getJspPah()$/$getClassInstance()$Update.jsp
+//#FILE=$getJavaPah()$/dao/$getClass()$DAO.java
+//根据#LEVEL得知文件级别：分模块级别，单个类[数据表]级别
+#LEVEL=CLASS
+//#LEVEL=MODULE
+//以下为输出的物理文件文件内容
+//**Update.jsp养例
+<%@ page contentType="text/html; charset=GBK" %> 
+<%@ page import="$getPackage()$.util.*"%>
+<%@ include file="taglibs.jsp"%>
+<%@ page import="java.util.*"%>
+<%@ include file = "../include/sys.imp.jsp"  %>
+<%@ page import="$getPackage()$.pojo.$getClass()$"%> 
+<% 
+	$getClass()$ $getClassInstance()$=($getClass()$)request.getAttribute("$getClassInstance()$");
+	if ($getClassInstance()$ ==null ) 
+	$getClassInstance()$ = new $getClass()$(); 
+	WebApplicationContext context = (WebApplicationContext)this.getServletContext().getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);   
+    RefItemMgrCall refItemMgrCall = (RefItemMgrCall)context.getBean("refItemMgrCall");
+    AuthI authI = (AuthI)context.getBean("authI");  
+ 	Account account=(Account)authI.getAccount(request,response);
+%>
+<html>
+<head>
+<title>$getClassTitle()$ 修改</title>
+<link href="../style/open.style.css" rel="stylesheet" type="text/css">
+<script language="javascript" src="../js/js.js"></script>
+<script language="javascript" type="text/javascript" src="../js/prototype.js"></script>
+<script language="javascript" type="text/javascript" src="../js/xmlhttprequest.js"></script>
+<script language="javascript" src="../js/calendar/calendar.js"></script>
+</head>
+<script language="javascript" >
+	function goto(){
+		if (checked()){ 
+	 		if(!confirm("您确定更新吗？")) return ;
+         	frmUpdate.action="./$getClassInstance()$Action.do?doType=4";
+         	frmUpdate.submit();
+         }
+	}
+
+	function checked(){
+
+ 	//arrayInputObj = new Array("name","area","customerType");
+	//arrayInputMessage = new Array("姓名","客户区域","客户属性");
+	
+	//if (!dateCheck(arrayInputObj,arrayInputMessage)) 
+	//	return false;
+	//else 
+		return true;
+}
+</script>
+<body> 
+  	<form action = "./$getClassInstance()$Action.do" method="post" name="frmUpdate"> 
+      
+	  	<!--表头部分  -->
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td height="30" background="../images/tab_05.gif">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="12" height="30"><img src="../images/tab_03.gif" width="12" height="30" /></td>
+							<td width="5%"><div align="center"><img src="../images/tb.gif" width="16" height="16" /></div></td>
+							<td width="95%" class="STYLE1"><span class="STYLE3">你当前的位置</span>：[$getClassTitle()$管理]-[$getClassTitle()$修改]</td>
+							<td width="16"><img src="../images/tab_07.gif" width="16" height="30" /></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		
+		<!--标题  -->
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td height="60" valign="bottom">
+					<div align="center" class="newsTitle">
+						<span class="newsTitle">$getClassTitle()$修改</span>
+					</div>
+					<hr align="center" width="98%" size="1" color="#999999" style="BORDER-LEFT: #000000 1PX DASHED; BORDER-RIGHT: #000000 1PX DASHED; BORDER-TOP: #000000 1PX DASHED; BORDER-BOTTOM: #000000 1PX DASHED">
+				</td>
+			</tr>
+		</table> 
+		
+		<!--ID的隐藏值  -->
+	 	<input name="$getClassId()$" type="hidden" value="<%=Util.strNull($getClassInstance()$.get$getClassIdIC()$())%>" />
+		
+		<!--字段部分  -->
+     	<table  width="98%" border="1" cellpadding="4" cellspacing="0" bordercolordark="#FFFFFF" align="center">  
+  		$FOR.CLASS.PROPERTY$	
+    		<tr> 
+       			<td width = '80' nowrap   class='updateTitleClass'>$getClassPropertyTitle()$</td>
+       			<td><input name="$getClassPropertyName()$" type="text" class="textfield" value="<%=Util.strNull($getClassInstance()$.get$getClassPropertyNameIC()$())%>" /></td>
+    		</tr>
+    	$ENDFOR.CLASS.PROPERTY$
+    	</table> 
+  		<br>
+  		<!--按钮  -->
+  		<div align="center">
+    		<input  type="submit" class='Btn' onclick="goto();" value = " 更新 ">
+    		<input  type="button" class='Btn' onClick="javascript:history.go(-1)" value = " 后退 " >
+  		</div>
+	</form>
+</body>
+</html>

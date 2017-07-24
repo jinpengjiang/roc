@@ -1,0 +1,88 @@
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//说明。。。
+//$..$标记需要解析的标签，如$getJavaPah()$表示根据包名计算的java文件保存路径。
+//内部变量定义区域
+//根据#FILE得知物理文件保存路径、名称
+//#FILE=$getJspPah()$/$getClassInstance()$Add.jsp
+#FILE=$getJavaPah()$/service/impl/$getClass()$ManagerImpl.java
+//根据#LEVEL得知文件级别：分模块级别，单个类[数据表]级别
+#LEVEL=CLASS
+//#LEVEL=MODULE
+//以下为输出的物理文件文件内容
+//**ServiceImpl.java样例
+package $getPackage()$.service.impl;
+
+import java.util.List;
+import java.util.ArrayList;
+
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import $getPackage()$.dao.$getClass()$Dao;
+//import $getPackage()$.dao.UserDao;
+import $getPackage()$.pojo.$getClass()$;
+//import $getPackage()$.pojo.User;
+import $getPackage()$.service.*;
+
+@Transactional
+public class $getClass()$ManagerImpl implements $getClass()$Manager{
+	private $getClass()$Dao $getClassInstance()$Dao;
+
+	public $getClass()$Dao get$getClass()$Dao() {
+		return $getClassInstance()$Dao;
+	}
+
+	public void set$getClass()$Dao($getClass()$Dao $getClassInstance()$Dao) {
+		this.$getClassInstance()$Dao = $getClassInstance()$Dao;
+	}
+	
+	@Transactional(propagation=Propagation.REQUIRED)
+
+	public $getClassIdType()$ add$getClass()$($getClass()$ $getClassInstance()$){
+		return $getClassInstance()$Dao.add$getClass()$($getClassInstance()$);
+	}
+
+	public List getAll$getClass()$() {
+		return $getClassInstance()$Dao.getAll$getClass()$();		
+	}
+
+		
+	public List getAll$getClass()$(int startRows, int pageSize){
+		List list = $getClassInstance()$Dao.getAll$getClass()$(startRows, pageSize);
+		return list;
+	}
+
+	public Long getAll$getClass()$Rows() {
+		return $getClassInstance()$Dao.getAll$getClass()$Rows();
+	}
+	public Long getAll$getClass()$RowsByCondition(List condition) {
+		return $getClassInstance()$Dao.getRowsByCondition(condition);
+	}
+	public void delete$getClass()$($getClass()$ $getClassInstance()$){
+		
+		$getClassInstance()$Dao.delete$getClass()$($getClassInstance()$);
+	}
+	public $getClass()$ get$getClass()$($getClassIdType()$ $getClassId()$) {
+		return $getClassInstance()$Dao.get$getClass()$($getClassId()$);
+	}
+	public void update$getClass()$($getClass()$ $getClassInstance()$) {
+		$getClassInstance()$Dao.update$getClass()$($getClassInstance()$);
+	}
+	public List findByHqlByCondition(List condition,String orderBy,int startRows, int pageSize ){
+		return $getClassInstance()$Dao.getListByCondition(condition, orderBy,startRows, pageSize);
+	}
+	public List findByHql(int startRows, int pageSize ){
+		return $getClassInstance()$Dao.findByHql(startRows, pageSize);
+	}
+	
+	public List getselectContent(List condition){
+		return $getClassInstance()$Dao.getselectContent(condition);
+		
+	}
+	public boolean isExistById(String $getClassId()$){
+		
+		return $getClassInstance()$Dao.isExistById($getClassId()$);
+	}
+}

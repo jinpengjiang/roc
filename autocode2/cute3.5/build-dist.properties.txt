@@ -1,0 +1,87 @@
+//#FILE=$getJspPah()$/build/build-dist.properties
+#FILE=$getRootPah()$/build-dist.properties
+#LEVEL=MODULE
+# These properties are only used when building the InitCuteFrameworks expanded from the distribution.
+
+InitCuteFramework.dir = .
+InitCuteFramework.build.dir = ${InitCuteFramework.dir}/build
+InitCuteFramework.lib.dir = ${InitCuteFramework.dir}/lib
+InitCuteFramework.lib.compile.dir = ${InitCuteFramework.lib.dir}/compile
+InitCuteFramework.lib.running.dir = ${InitCuteFramework.lib.dir}/running
+InitCuteFramework.lib.jdbc.dir = ${InitCuteFramework.lib.dir}/jdbc
+InitCuteFramework.dist.dir = ${InitCuteFramework.dir}/dist
+###########################################
+## WEB APPLICATION                       ##
+###########################################
+InitCuteFramework.webapp.dir = ${InitCuteFramework.dir}/web
+InitCuteFramework.web-inf.dir = ${InitCuteFramework.webapp.dir}/WEB-INF
+InitCuteFramework.webapp.class.dir = ${InitCuteFramework.web-inf.dir}/classes
+###########################################
+## sql                                   ##
+###########################################
+InitCuteFramework.sql.dir = ${InitCuteFramework.src.dir}/sql
+
+###########################################
+## CLASS DEFINE                          ##
+###########################################
+InitCuteFramework.classes.dir = ${InitCuteFramework.dir}/classes
+#${InitCuteFramework.dir}/src/webapp/WEB-INF/classes
+InitCuteFramework.meta-inf.dir = ${InitCuteFramework.classes.dir}/META-INF
+
+###########################################
+## SOURCE CODE                           ##
+###########################################
+InitCuteFramework.src.dir = ${InitCuteFramework.dir}/src
+
+## InitCuteFramework.java.dir = ${InitCuteFramework.src.dir}/java
+InitCuteFramework.java.dir = ${InitCuteFramework.src.dir}
+InitCuteFramework.test.dir = ${InitCuteFramework.src.dir}/test
+InitCuteFramework.gen-src.dir = ${InitCuteFramework.src.dir}/gen-src
+
+###########################################
+## REPORT LOCATION                       ##
+###########################################
+InitCuteFramework.docs.dir = ${InitCuteFramework.dir}/site
+###########################################
+## doc                                   ##
+###########################################
+InitCuteFramework.doc.dir = ${InitCuteFramework.dir}/doc
+
+###########################################
+## DEPLOY                                ##
+###########################################
+InitCuteFramework.web-deploy.dir = D:\eclipse3.2\workspace\NewCuteTest\web\WEB-INF
+
+###########################################
+## DataSource                            ##
+###########################################
+
+dbName oracle
+hibernate.connection.driver_class oracle.jdbc.driver.OracleDriver
+hibernate.connection.username u_wjh
+hibernate.connection.password u_wjh
+hibernate.connection.url jdbc:oracle:thin:@cftest:1521:oracle
+
+#dbName mysql
+#hibernate.connection.driver_class com.mysql.jdbc.Driver
+#hibernate.connection.username root
+#hibernate.connection.password root
+#hibernate.connection.url jdbc:mysql://localhost:3306/InitCuteFramework
+
+#dbName sqlserver
+#hibernate.connection.driver_class net.sourceforge.jtds.jdbc.Driver
+#hibernate.connection.url jdbc:jtds:sqlserver://rdserver2:1433/InitCuteFramework
+#hibernate.connection.username jetspeed
+#hibernate.connection.password jetspeed
+
+#dbName informix
+#hibernate.connection.driver_class com.informix.jdbc.IfxDriver
+#hibernate.connection.url jdbc:informix-sqli://10.3.11.12:7515/uaas:INFORMIXSERVER=k460secsoc;
+#hibernate.connection.username uaas
+#hibernate.connection.password uaas
+
+#dbName db2
+#hibernate.connection.driver_class com.ibm.db2.jcc.DB2Driver
+#hibernate.connection.url jdbc:db2://zjyg:50000/InitCuteFramework
+#hibernate.connection.username db2admin
+#hibernate.connection.password db2admin

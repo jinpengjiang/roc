@@ -1,0 +1,59 @@
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//暂时仅支持单行注释，通过//标示。此行为注释，生成的物理文件不包含。
+//说明。。。
+//$..$标记需要解析的标签，如$getJavaPah()$表示根据包名计算的java文件保存路径。
+//内部变量定义区域
+//根据#FILE得知物理文件保存路径、名称
+//#FILE=$getJspPah()$/$getClassInstance()$Add.jsp
+//#FILE=$getJavaPah()$/dao/$getClass()$DAO.java
+#FILE=$getJavaPah()$/form/$getClass()$Form.java
+//根据#LEVEL得知文件级别：分模块级别，单个类[数据表]级别 
+#LEVEL=CLASS
+//#LEVEL=MODULE
+//以下为输出的物理文件文件内容
+
+//**Form.java样例
+package $getPackage()$.form;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts.action.ActionErrors;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionMapping;
+
+
+public class $getClass()$Form extends ActionForm{
+
+        /** $getClassIdDoc()$ */
+	private $getClassIdType()$ $getClassId()$;
+        $FOR.CLASS.PROPERTY$
+	/** $getClassPropertyDoc()$ */
+        private $getClassPropertyType()$ $getClassPropertyName()$;
+        $ENDFOR.CLASS.PROPERTY$/** 当前页号 */
+
+	
+	
+	
+	public $getClassIdType()$ get$getClassIdIC()$(){
+             	return $getClassId()$;
+        }
+        public void set$getClassIdIC()$( $getClassIdType()$ $getClassId()$){
+             	this.$getClassId()$=$getClassId()$;
+	}
+	$FOR.CLASS.PROPERTY$
+	public $getClassPropertyType()$ get$getClassPropertyNameIC()$(){
+    		return $getClassPropertyName()$;
+	}
+	public void set$getClassPropertyNameIC()$($getClassPropertyType()$ $getClassPropertyName()$){
+    		this.$getClassPropertyName()$=$getClassPropertyName()$;
+	}
+	$ENDFOR.CLASS.PROPERTY$
+	public ActionErrors validate(ActionMapping actionMapping, HttpServletRequest httpServletRequest) {
+	    ActionErrors errors = new ActionErrors();
+
+	    return errors;
+	  }
+
+
+}

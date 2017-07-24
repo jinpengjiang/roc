@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+	<module name="member" package="com.travelsky.persistence.member" datasource="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=172.25.5.194)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=developmu)(SERVER=DEDICATED)))" resource="RES_SYS_DEMO"  username="member_kn" password="member_kn">
+		<class name="Account" instance="Account"  table="ACCOUNT" > 
+		</class>
+		<class name="AccountExtention" instance="AccountExtention"  table="ACCOUNT_EXTENTION" > 
+		</class>
+		<class name="EcUser" instance="EcUser"  table="EC_USER" > 
+		</class>
+		<class name="EcUserExtention" instance="EcUserExtention"  table="EC_USER_EXTENTION" > 
+		</class>
+		<class name="FndConfig" instance="FndConfig"  table="FND_CONFIG" > 
+		</class>
+		<class name="FndException" instance="FndException"  table="FND_EXCEPTION" > 
+		</class>
+		<class name="Identification" instance="Identification"  table="IDENTIFICATION" > 
+		</class>
+		<class name="LockedUsers" instance="LockedUsers"  table="LOCKED_USERS" > 
+		</class>
+		<class name="LoginHistory" instance="LoginHistory"  table="LOGIN_HISTORY" > 
+		</class>
+		<class name="Preference" instance="Preference"  table="PREFERENCE" > 
+		</class>
+		<class name="Appointment" instance="Appointment"  table="APPOINTMENT" > 
+		</class>
+
+		
+		<class name="Favorite" instance="Favorite"  table="FAVORITE" > 
+		</class>
+		
+		<class name="FfpCard" instance="FfpCard"  table="FFP_CARD" > 
+		</class>
+		
+		<class name="FrequentContact" instance="FrequentContact"  table="FREQUENT_CONTACT" > 
+		</class>
+		
+		<class name="MemberFavorPax" instance="MemberFavorPax"  table="MEMBER_FAVOR_PAX" > 
+		</class>
+		
+		<class name="TokenInfo" instance="TokenInfo"  table="TOKEN_INFO" > 
+		</class>
+	</module>
+</root>
